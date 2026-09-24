@@ -40,6 +40,12 @@ class ResourcesTest extends TestCase
         $this->assertDatabaseHas('gallery_items', [
             'title' => 'Signature Interiors',
         ]);
+
+        $this->assertDatabaseCount('team_members', 5);
+        $this->assertDatabaseHas('team_members', [
+            'name' => 'Abdulhamid Sherefa Negashe',
+            'featured' => true,
+        ]);
     }
 
     public function test_admin_can_access_products_resource(): void
@@ -80,5 +86,16 @@ class ResourcesTest extends TestCase
         $response = $this->actingAs($user)->get('/admin/gallery-items');
         $response->assertSuccessful();
         $response->assertSee('Signature Interiors');
+    }
+
+    public function test_admin_can_access_team_members_resource(): void
+    {
+        $this->seed(ContentSeeder::class);
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/team-members');
+        $response->assertSuccessful();
+        $response->assertSee('Abdulhamid Sherefa Negashe');
+        $response->assertSee('Ayub Nuredin Negashe');
     }
 }

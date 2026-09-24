@@ -6,6 +6,7 @@ use App\Models\GalleryItem;
 use App\Models\ProcessStep;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\TeamMember;
 use Illuminate\Database\Seeder;
 
 class ContentSeeder extends Seeder
@@ -199,6 +200,72 @@ class ContentSeeder extends Seeder
             GalleryItem::updateOrCreate(
                 ['title' => $item['title']],
                 $item
+            );
+        }
+
+        // 5. TeamMembers
+        $teamMembers = [
+            [
+                'name' => 'Abdulhamid Sherefa Negashe',
+                'role' => 'Co-Founder & Managing Director',
+                'bio' => 'Co-founder leading client engagement, strategic partnerships, and operations across Ethiopian residential and commercial finishing projects.',
+                'photo' => null,
+                'linkedin_url' => 'https://linkedin.com',
+                'email' => 'abdulhamid@adrontrading.com',
+                'sort_order' => 1,
+                'is_active' => true,
+                'featured' => true,
+            ],
+            [
+                'name' => 'Ayub Nuredin Negashe',
+                'role' => 'Co-Founder & Head of Procurement',
+                'bio' => 'Co-founder managing international supply chains, manufacturer relations in Foshan, and end-to-end container logistics.',
+                'photo' => null,
+                'linkedin_url' => 'https://linkedin.com',
+                'email' => 'ayub@adrontrading.com',
+                'sort_order' => 2,
+                'is_active' => true,
+                'featured' => true,
+            ],
+            [
+                'name' => 'Selamawit Tadesse',
+                'role' => 'Lead Interior Designer',
+                'bio' => 'Specializing in luxury residential interior concepts, custom cabinetry layouts, and coordinated material boards.',
+                'photo' => null,
+                'linkedin_url' => 'https://linkedin.com',
+                'email' => 'selamawit@adrontrading.com',
+                'sort_order' => 3,
+                'is_active' => true,
+                'featured' => true,
+            ],
+            [
+                'name' => 'Dawit Bekele',
+                'role' => 'Senior Project Architect',
+                'bio' => 'Overseeing technical drawings, site measurements, and precision on-site installation across multi-unit developments.',
+                'photo' => null,
+                'linkedin_url' => 'https://linkedin.com',
+                'email' => 'dawit@adrontrading.com',
+                'sort_order' => 4,
+                'is_active' => true,
+                'featured' => false,
+            ],
+            [
+                'name' => 'Hanna Girma',
+                'role' => 'Client Relations & Showroom Manager',
+                'bio' => 'Dedicated to sample approvals, personalized client consultations, and post-installation support.',
+                'photo' => null,
+                'linkedin_url' => 'https://linkedin.com',
+                'email' => 'hanna@adrontrading.com',
+                'sort_order' => 5,
+                'is_active' => true,
+                'featured' => false,
+            ],
+        ];
+
+        foreach ($teamMembers as $member) {
+            TeamMember::updateOrCreate(
+                ['name' => $member['name']],
+                $member
             );
         }
     }
