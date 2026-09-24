@@ -182,8 +182,15 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
               @if($member->photo)
                 <img src="{{ $resolveImage($member->photo) }}" alt="{{ $member->name }}">
               @else
+                @php
+                  $initials = collect(explode(' ', $member->name))
+                    ->filter()
+                    ->map(fn($part) => strtoupper(substr($part, 0, 1)))
+                    ->take(2)
+                    ->implode('');
+                @endphp
                 <div class="team-avatar-placeholder">
-                  {{ strtoupper(substr($member->name, 0, 1)) }}
+                  {{ $initials ?: 'A' }}
                 </div>
               @endif
             </div>
