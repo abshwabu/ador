@@ -19,7 +19,7 @@ class SettingSeeder extends Seeder
                 'company_name' => 'Adron Trading PLC',
                 'short_name' => 'Adron',
                 'tagline' => 'Design. Source. Deliver.',
-                'logo' => null,
+                'logo' => 'images/logo.png',
                 'favicon' => null,
 
                 // SEO
@@ -36,7 +36,7 @@ class SettingSeeder extends Seeder
                 'hero_primary_button_link' => '#products',
                 'hero_secondary_button_text' => 'Request a Quote',
                 'hero_secondary_button_link' => '#contact',
-                'hero_image' => null,
+                'hero_image' => 'images/hero.jpg',
                 'hero_badge_title' => 'ADDIS ABABA · ETHIOPIA',
                 'hero_badge_text' => 'Interior finishing • Procurement • Project management',
 
@@ -44,7 +44,7 @@ class SettingSeeder extends Seeder
                 'about_kicker' => 'About Adron Trading PLC',
                 'about_heading' => 'A local partner with a global supply vision.',
                 'about_body' => 'Adron Trading PLC is positioned as an Ethiopian interior finishing and design firm based in Addis Ababa, serving residential villas, commercial offices and multi-unit apartments.',
-                'about_image' => null,
+                'about_image' => 'images/about.jpg',
 
                 // Process
                 'process_kicker' => 'How We Work',
