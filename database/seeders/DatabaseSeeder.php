@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->call(SettingSeeder::class);
+        $this->call([
+            SettingSeeder::class,
+            ContentSeeder::class,
+        ]);
     }
 }
