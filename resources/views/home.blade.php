@@ -47,9 +47,15 @@
         <p>{{ $settings->about_body ?? 'Adron Trading PLC is positioned as an Ethiopian interior finishing and design firm based in Addis Ababa, serving residential villas, commercial offices and multi-unit apartments.' }}</p>
       </div>
       <div class="checks">
-        <div class="check"><i>✓</i><div><b>Project Management</b><br><span>Client engagement, site measurements, floor plans and coordination.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Interior Fitting & Installation</b><br><span>Local physical assembly and installation for completed projects.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Global Procurement</b><br><span>Factory sourcing, container consolidation and international supply coordination.</span></div></div>
+        @if($services->isNotEmpty())
+          @foreach($services->take(3) as $service)
+            <div class="check"><i>✓</i><div><b>{{ $service->title }}</b><br><span>{{ $service->description }}</span></div></div>
+          @endforeach
+        @else
+          <div class="check"><i>✓</i><div><b>Project Management</b><br><span>Client engagement, site measurements, floor plans and coordination.</span></div></div>
+          <div class="check"><i>✓</i><div><b>Interior Fitting & Installation</b><br><span>Local physical assembly and installation for completed projects.</span></div></div>
+          <div class="check"><i>✓</i><div><b>Global Procurement</b><br><span>Factory sourcing, container consolidation and international supply coordination.</span></div></div>
+        @endif
       </div>
     </div>
   </div>
@@ -282,7 +288,19 @@
       <div class="contact-card">
         <div class="contact-item"><small>Company</small><b>{{ $settings->contact_company ?? $settings->company_name }}</b></div>
         <div class="contact-item"><small>Location</small><b>{{ $settings->contact_address ?? 'Addis Ababa, Ethiopia' }}</b></div>
-        <div class="contact-item"><small>Founders / Primary Contacts</small><b>Abdulhamid Sherefa Negashe<br>Ayub Nuredin Negashe</b></div>
+        @php
+          $primaryContacts = $teamMembers->where('featured', true)->take(2);
+        @endphp
+        <div class="contact-item">
+          <small>Founders / Primary Contacts</small>
+          <b>
+            @if($primaryContacts->isNotEmpty())
+              {!! $primaryContacts->pluck('name')->implode('<br>') !!}
+            @else
+              Abdulhamid Sherefa Negashe<br>Ayub Nuredin Negashe
+            @endif
+          </b>
+        </div>
         <div class="contact-item"><small>Phone / WhatsApp</small><span>{{ $settings->contact_phone ?? '+251 9… / +251 7…' }}</span></div>
         <div class="contact-item"><small>Email</small><span><a href="mailto:{{ $settings->contact_email ?? 'info@adrontrading.com' }}">{{ $settings->contact_email ?? 'info@adrontrading.com' }}</a></span></div>
       </div>
