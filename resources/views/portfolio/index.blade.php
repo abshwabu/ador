@@ -1,6 +1,6 @@
 @php
-    $resolveImage = function (?string $path, string $fallback = '') {
-        if (! $path) return $fallback ? asset($fallback) : '';
+    $resolveImage = function (?string $path, string $fallback = 'images/hero.jpg') {
+        if (! $path) return asset($fallback);
         if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, 'data:')) return $path;
         if (str_starts_with($path, 'images/')) return asset($path);
         return asset('storage/' . $path);
@@ -11,8 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Meet the team behind {{ $settings->company_name ?? 'Adron Trading PLC' }}. Design. Source. Deliver.">
-<title>Our Team | {{ $settings->company_name ?? 'Adron Trading PLC' }}</title>
+<meta name="description" content="Explore our portfolio of luxury residential villas, developer mock-up apartments, and commercial projects in Addis Ababa, Ethiopia.">
+<title>Portfolio & Projects | {{ $settings->company_name ?? 'Adron Trading PLC' }}</title>
 @if($settings->favicon)
 <link rel="icon" href="{{ $resolveImage($settings->favicon) }}">
 @endif
@@ -47,7 +47,7 @@ img{max-width:100%;display:block}
 .btn-gold{background:var(--gold);color:#111}
 .btn-gold:hover{transform:translateY(-2px);background:var(--gold2)}
 .btn-dark{background:var(--navy);color:#fff}
-.btn-outline{border-color:rgba(7,26,58,.4);color:var(--navy)}
+.btn-outline{border-color:rgba(7,26,58,.3);color:var(--navy)}
 .btn-outline:hover{background:var(--navy);color:#fff}
 .menu{display:none;background:none;border:0;font-size:26px}
 
@@ -64,31 +64,137 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
 .page-hero p{font-size:18px;color:#536071;max-width:720px;margin:0 auto 24px}
 
 .section{padding:90px 0}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.team-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(7,26,58,.06);transition:transform .25s ease,box-shadow .25s ease;display:flex;flex-direction:column;position:relative}
-.team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.team-featured-badge{position:absolute;top:16px;right:16px;z-index:2;background:var(--gold);color:#111;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
-.team-img-wrap{position:relative;width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,var(--navy),var(--navy2));overflow:hidden}
-.team-img-wrap img{width:100%;height:100%;object-fit:cover}
-.team-avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:58px;font-weight:700;color:var(--gold2);background:linear-gradient(145deg,var(--navy),var(--navy2))}
-.team-body{padding:26px;flex:1;display:flex;flex-direction:column}
-.team-role{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-.team-name{color:var(--navy);font-size:20px;font-weight:750;margin:0 0 10px;line-height:1.25}
-.team-bio{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 20px;flex:1}
-.team-meta{display:flex;gap:14px;align-items:center;margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:13px}
-.team-meta a{color:var(--navy);font-weight:600;display:inline-flex;align-items:center;gap:6px}
-.team-meta a:hover{color:var(--gold)}
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.project-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(7,26,58,.06);
+  transition:transform .3s ease,box-shadow .3s ease;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow);
+}
+.project-img-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/10;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  overflow:hidden;
+}
+.project-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s ease;
+}
+.project-card:hover .project-img-wrap img{
+  transform:scale(1.04);
+}
+.project-badge{
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:2;
+  background:rgba(7,26,58,.88);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+}
+.project-featured{
+  position:absolute;
+  top:16px;
+  right:16px;
+  z-index:2;
+  background:var(--gold);
+  color:#111;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:999px;
+}
+.project-body{
+  padding:26px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.project-category{
+  color:var(--gold);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.project-title{
+  color:var(--navy);
+  font-family:Georgia,serif;
+  font-size:22px;
+  font-weight:700;
+  margin:0 0 12px;
+  line-height:1.25;
+}
+.project-title a:hover{
+  color:var(--gold);
+}
+.project-excerpt{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin:0 0 20px;
+  flex:1;
+}
+.project-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:auto;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  color:var(--muted);
+}
+.project-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:750;
+  color:var(--navy);
+  font-size:13px;
+  transition:color .2s ease;
+}
+.project-link:hover{
+  color:var(--gold);
+}
 
 .cta-banner{
   background:linear-gradient(135deg,#071a3a,#0e397c);
   color:#fff;
   border-radius:28px;
-  padding:50px;
+  padding:55px 40px;
   text-align:center;
   margin-top:70px;
 }
-.cta-banner h2{font-family:Georgia,serif;font-size:36px;margin:0 0 12px;color:#fff}
-.cta-banner p{color:#d6deea;max-width:620px;margin:0 auto 24px}
+.cta-banner h2{font-family:Georgia,serif;font-size:38px;margin:0 0 14px;color:#fff}
+.cta-banner p{color:#d6deea;max-width:640px;margin:0 auto 28px;font-size:16px}
 
 .footer{background:#06152f;color:#c9d2e1;padding:55px 0 25px}
 .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px}
@@ -100,14 +206,14 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
 @media(max-width:900px){
  .nav-links{display:none;position:absolute;top:78px;left:0;right:0;background:#fff;padding:20px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
  .nav-links.open{display:flex}.menu{display:block}.nav .btn{display:none}
- .team-grid{grid-template-columns:repeat(2,1fr)}
+ .portfolio-grid{grid-template-columns:repeat(2,1fr);gap:20px}
  .footer-grid{grid-template-columns:1fr;gap:22px}
 }
 @media(max-width:560px){
  .page-hero{padding:130px 0 45px}
  .section{padding:50px 0}
- .team-grid{grid-template-columns:1fr}
- .cta-banner{padding:30px 20px}
+ .portfolio-grid{grid-template-columns:1fr}
+ .cta-banner{padding:35px 20px}
  .cta-banner h2{font-size:28px}
 }
 
@@ -149,9 +255,9 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
       <a href="{{ route('home') }}#about">About</a>
       <a href="{{ route('home') }}#products">Products</a>
       <a href="{{ route('home') }}#solutions">Solutions</a>
-      <a href="{{ route('portfolio.index') }}">Portfolio</a>
+      <a href="{{ route('portfolio.index') }}" style="color: var(--gold);">Portfolio</a>
       <a href="{{ route('home') }}#process">How We Work</a>
-      <a href="{{ route('team.index') }}" style="color: var(--gold);">Team</a>
+      <a href="{{ route('team.index') }}">Team</a>
       <a href="{{ route('home') }}#showroom">Showroom</a>
       <a href="{{ route('home') }}#contact" class="btn btn-dark">Request a Quote</a>
     </nav>
@@ -161,9 +267,9 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
 <main>
   <section class="page-hero">
     <div class="container">
-      <div class="kicker">{{ $settings->team_kicker ?? 'Leadership & Partners' }}</div>
-      <h1>{{ $settings->team_heading ?? 'Our Leadership & Team' }}</h1>
-      <p>{{ $settings->team_intro ?? 'Local Ethiopian project execution combined with direct international manufacturing partnerships.' }}</p>
+      <div class="kicker">Featured Work & Case Studies</div>
+      <h1>Crafted Spaces. Proven Delivery.</h1>
+      <p>Explore our portfolio of bespoke private residences, commercial corporate offices, and developer apartment interior finishing across Ethiopia.</p>
       <div>
         <a href="{{ route('home') }}" class="btn btn-outline">&larr; Back to Home</a>
       </div>
@@ -172,51 +278,44 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
 
   <section class="section">
     <div class="container">
-      <div class="team-grid">
-        @forelse($teamMembers as $member)
-          <div class="team-card">
-            @if($member->featured)
-              <span class="team-featured-badge">Featured</span>
+      <div class="portfolio-grid">
+        @forelse($projects as $project)
+          <article class="project-card">
+            @if($project->featured)
+              <span class="project-featured">Featured</span>
             @endif
-            <div class="team-img-wrap">
-              @if($member->photo)
-                <img src="{{ $resolveImage($member->photo) }}" alt="{{ $member->name }}">
-              @else
-                <div class="team-avatar-placeholder">
-                  {{ strtoupper(substr($member->name, 0, 1)) }}
-                </div>
+            <div class="project-img-wrap">
+              <img src="{{ $resolveImage($project->cover_image, 'images/hero.jpg') }}" alt="{{ $project->title }}" loading="lazy">
+              @if($project->category)
+                <span class="project-badge">{{ $project->category }}</span>
               @endif
             </div>
-            <div class="team-body">
-              <span class="team-role">{{ $member->role }}</span>
-              <h3 class="team-name">{{ $member->name }}</h3>
-              <p class="team-bio">{{ $member->bio }}</p>
-              @if($member->email || $member->linkedin_url)
-                <div class="team-meta">
-                  @if($member->email)
-                    <a href="mailto:{{ $member->email }}">
-                      <svg style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                      Email
-                    </a>
-                  @endif
-                  @if($member->linkedin_url)
-                    <a href="{{ $member->linkedin_url }}" target="_blank" rel="noopener noreferrer">
-                      <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                      LinkedIn
-                    </a>
-                  @endif
-                </div>
+            <div class="project-body">
+              <h2 class="project-title">
+                <a href="{{ route('portfolio.show', $project->slug) }}">{{ $project->title }}</a>
+              </h2>
+              @if($project->excerpt)
+                <p class="project-excerpt">{{ $project->excerpt }}</p>
               @endif
+              <div class="project-meta">
+                <span>{{ $project->location ?? 'Addis Ababa' }} · {{ $project->year ?? '2026' }}</span>
+                <a href="{{ route('portfolio.show', $project->slug) }}" class="project-link">
+                  View Project
+                  <svg style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+              </div>
             </div>
-          </div>
+          </article>
         @empty
-          <p>No team members listed at this time.</p>
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+            <p style="font-size: 18px; color: var(--muted);">No portfolio projects published yet.</p>
+          </div>
         @endforelse
       </div>
 
       <div class="cta-banner">
-        <h2>Start a Project with Us</h2>
-        <p>Whether you're developing luxury villas, multi-unit apartments, or commercial spaces, our team is ready to bring your vision to life.</p>
+        <h2>Have an Interior Project in Mind?</h2>
+        <p>From architectural brief and factory procurement to container delivery and precision assembly in Ethiopia, we manage every milestone.</p>
         <a href="{{ route('home') }}#contact" class="btn btn-gold">Discuss Your Project</a>
       </div>
     </div>
@@ -235,7 +334,7 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);li
       <p><a href="{{ route('home') }}#about">About</a></p>
       <p><a href="{{ route('home') }}#products">Products</a></p>
       <p><a href="{{ route('home') }}#solutions">Solutions</a></p>
-      <p><a href="{{ route('home') }}#process">How We Work</a></p>
+      <p><a href="{{ route('portfolio.index') }}">Portfolio</a></p>
       <p><a href="{{ route('team.index') }}">Team</a></p>
     </div>
     <div>

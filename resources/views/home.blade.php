@@ -327,8 +327,9 @@ img {
       <a href="#about">About</a>
       <a href="#products">Products</a>
       <a href="#solutions">Solutions</a>
+      <a href="{{ route('portfolio.index') }}">Portfolio</a>
       <a href="#process">How We Work</a>
-      <a href="#team">Team</a>
+      <a href="{{ route('team.index') }}">Team</a>
       <a href="#showroom">Showroom</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact" class="btn btn-dark">Request a Quote</a>
@@ -639,6 +640,7 @@ img {
       <p><a href="#about">About</a></p>
       <p><a href="#products">Products</a></p>
       <p><a href="#solutions">Solutions</a></p>
+      <p><a href="{{ route('portfolio.index') }}">Portfolio</a></p>
       <p><a href="#process">How We Work</a></p>
       <p><a href="{{ route('team.index') }}">Team</a></p>
     </div>
