@@ -98,4 +98,27 @@ class ResourcesTest extends TestCase
         $response->assertSee('Abdulhamid Sherefa Negashe');
         $response->assertSee('Ayub Nuredin Negashe');
     }
+
+    public function test_admin_can_access_projects_resource(): void
+    {
+        $this->seed(\Database\Seeders\ProjectSeeder::class);
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/projects');
+        $response->assertSuccessful();
+        $response->assertSee('Bole Luxury Villa Interior');
+        $response->assertSee('CMC Real Estate Mock-Up Apartments');
+    }
+
+    public function test_admin_can_view_project_edit_page_with_images_relation(): void
+    {
+        $this->seed(\Database\Seeders\ProjectSeeder::class);
+        $user = User::factory()->create();
+        $project = \App\Models\Project::first();
+
+        $response = $this->actingAs($user)->get("/admin/projects/{$project->id}/edit");
+        $response->assertSuccessful();
+        $response->assertSee($project->title);
+        $response->assertSee('Gallery Images');
+    }
 }
