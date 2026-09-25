@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('caption')->nullable();
             $table->text('description')->nullable();
+            $table->text('explanation')->nullable();
             $table->string('image')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);

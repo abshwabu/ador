@@ -27,19 +27,24 @@ class HomeTest extends TestCase
         $response->assertSuccessful();
 
         // Brand & Settings
-        $response->assertSee('Adron Trading PLC');
+        $response->assertSee('Adorn Trading PLC');
         $response->assertSee('Design. Source. Deliver.');
         $response->assertSee('Global Wholesale Furnishing');
         $response->assertSee('A local partner with a global supply vision.');
         $response->assertSee('How We Work');
         $response->assertSee('Showroom & Design Hub');
         $response->assertSee('Tell us what you are building.');
-        $response->assertSee('info@adrontrading.com');
-        $response->assertSee('© 2026 Adron Trading PLC. All rights reserved.');
+        $response->assertSee('info@adorntrading.com');
+        $response->assertSee('© 2026 Adorn Trading PLC. All rights reserved.');
 
         // Rebrand safety: No Miraden references anywhere
         $response->assertDontSee('MIRADEN', false);
         $response->assertDontSee('MIRADEN GLOBAL PLC', false);
+
+        // Third-party supplier name safety: No George Group or Foshan
+        $response->assertDontSee('George Group', false);
+        $response->assertDontSee('George Group China', false);
+        $response->assertDontSee('Foshan', false);
     }
 
     public function test_homepage_renders_all_dynamic_products_from_database(): void
@@ -58,6 +63,9 @@ class HomeTest extends TestCase
             $response->assertSee($product->description);
             if ($product->number_label) {
                 $response->assertSee($product->number_label);
+            }
+            if ($product->image) {
+                $response->assertSee($product->image);
             }
         }
     }
@@ -162,7 +170,8 @@ class HomeTest extends TestCase
         $response->assertDontSee('Inactive Member Example');
 
         // Rebrand safety
-        $response->assertSee('Adron Trading PLC');
+        $response->assertSee('Adorn Trading PLC');
         $response->assertDontSee('MIRADEN', false);
+        $response->assertDontSee('Foshan', false);
     }
 }

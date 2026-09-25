@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Our Team | ' . ($settings->company_name ?? 'Adron Trading PLC'))
-@section('meta_description', 'Meet the leadership and team behind ' . ($settings->company_name ?? 'Adron Trading PLC') . '. Design. Source. Deliver.')
+@section('title', 'Our Team | ' . ($settings->company_name ?? 'Adorn Trading PLC'))
+@section('meta_description', 'Meet the leadership and team behind ' . ($settings->company_name ?? 'Adorn Trading PLC') . '. Design. Source. Deliver.')
 
 @section('content')
 <section class="page-hero">

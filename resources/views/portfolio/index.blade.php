@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Portfolio & Projects | ' . ($settings->company_name ?? 'Adron Trading PLC'))
+@section('title', 'Portfolio & Projects | ' . ($settings->company_name ?? 'Adorn Trading PLC'))
 @section('meta_description', 'Explore our portfolio of luxury residential villas, developer mock-up apartments, and commercial projects in Addis Ababa, Ethiopia.')
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' | ' . ($settings->company_name ?? 'Adron Trading PLC'))
-@section('meta_description', $project->excerpt ?? ($project->title . ' — Project by ' . ($settings->company_name ?? 'Adron Trading PLC')))
+@section('title', $project->title . ' | ' . ($settings->company_name ?? 'Adorn Trading PLC'))
+@section('meta_description', $project->excerpt ?? ($project->title . ' — Project by ' . ($settings->company_name ?? 'Adorn Trading PLC')))
 
 @section('content')
 <section class="project-hero">
@@ -54,7 +54,7 @@
     <div class="container">
       <div class="project-content-wrap">
         <div class="kicker" style="margin-bottom: 12px;">Project Scope & Execution</div>
-        <h2 style="font-family: Georgia, serif; font-size: 32px; color: var(--navy); margin-top: 0; margin-bottom: 24px;">Project Overview</h2>
+        <h2 style="font-family: Georgia, serif; font-size: 32px; color: #fff; margin-top: 0; margin-bottom: 24px;">Project Overview</h2>
         {!! nl2br(e($project->body)) !!}
       </div>
     </div>
@@ -109,7 +109,7 @@
               @if($related->excerpt)
                 <p style="font-size: 13px; color: var(--muted); margin: 0 0 12px; line-height: 1.5; flex: 1;">{{ Str::limit($related->excerpt, 90) }}</p>
               @endif
-              <a href="{{ route('portfolio.show', $related->slug) }}" style="color: var(--navy); font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 4px; margin-top: auto;">
+              <a href="{{ route('portfolio.show', $related->slug) }}" style="color: var(--gold2); font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 4px; margin-top: auto;">
                 View Case Study &rarr;
               </a>
             </div>

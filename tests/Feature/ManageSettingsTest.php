@@ -50,7 +50,7 @@ class ManageSettingsTest extends TestCase
 
         Livewire::test(ManageSettings::class)
             ->fillForm([
-                'company_name' => 'Adron Trading PLC Updated',
+                'company_name' => 'Adorn Trading PLC Updated',
                 'tagline' => 'Design. Source. Deliver. Better.',
             ])
             ->call('save')
@@ -58,7 +58,7 @@ class ManageSettingsTest extends TestCase
 
         $this->assertDatabaseHas('settings', [
             'id' => 1,
-            'company_name' => 'Adron Trading PLC Updated',
+            'company_name' => 'Adorn Trading PLC Updated',
             'tagline' => 'Design. Source. Deliver. Better.',
         ]);
     }

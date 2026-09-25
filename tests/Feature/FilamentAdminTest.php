@@ -23,13 +23,13 @@ class FilamentAdminTest extends TestCase
     {
         $response = $this->get("/admin/login");
         $response->assertSuccessful();
-        $response->assertSee("Adron Trading PLC");
+        $response->assertSee("Adorn Trading PLC");
     }
 
     public function test_admin_can_authenticate_via_filament_login(): void
     {
         $user = User::factory()->create([
-            "email" => "admin@adron.com",
+            "email" => "admin@adorn.com",
             "password" => "password",
         ]);
 
@@ -37,7 +37,7 @@ class FilamentAdminTest extends TestCase
 
         Livewire::test(Login::class)
             ->fillForm([
-                "email" => "admin@adron.com",
+                "email" => "admin@adorn.com",
                 "password" => "password",
             ])
             ->call("authenticate")
@@ -52,14 +52,14 @@ class FilamentAdminTest extends TestCase
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get("/admin");
         $response->assertSuccessful();
-        $response->assertSee("Adron Trading PLC");
+        $response->assertSee("Adorn Trading PLC");
     }
 
     public function test_landing_page_renders_with_rebranded_content(): void
     {
         $response = $this->get("/");
         $response->assertSuccessful();
-        $response->assertSee("Adron Trading PLC");
+        $response->assertSee("Adorn Trading PLC");
         $response->assertSee("Design. Source. Deliver.");
         $response->assertDontSee("MIRADEN");
     }

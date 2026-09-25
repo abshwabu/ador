@@ -28,10 +28,37 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Adron Trading PLC')
+            ->brandName('Adorn Trading PLC')
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('2.75rem')
+            ->favicon(asset('favicon.ico'))
             ->colors([
                 'primary' => Color::Amber,
+                'gray' => Color::hex('#042641'),
             ])
+            ->renderHook(
+                \Filament\View\PanelsRenderHook::HEAD_END,
+                fn (): \Illuminate\Support\HtmlString => new \Illuminate\Support\HtmlString('
+                    <style>
+                        .fi-simple-layout,
+                        .fi-layout {
+                            background-color: #042641 !important;
+                        }
+                        .fi-simple-main {
+                            background-color: #073357 !important;
+                            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                        }
+                        .fi-sidebar {
+                            background-color: #031b2e !important;
+                            border-color: rgba(255, 255, 255, 0.08) !important;
+                        }
+                        .fi-topbar {
+                            background-color: rgba(4, 38, 65, 0.95) !important;
+                            border-color: rgba(255, 255, 255, 0.08) !important;
+                        }
+                    </style>
+                ')
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

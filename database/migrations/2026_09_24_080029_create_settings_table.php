@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             // Brand
-            $table->string('company_name')->default('Adron Trading PLC');
-            $table->string('short_name')->nullable()->default('Adron');
+            $table->string('company_name')->default('Adorn Trading PLC');
+            $table->string('short_name')->nullable()->default('Adorn');
             $table->string('tagline')->nullable()->default('Design. Source. Deliver.');
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();

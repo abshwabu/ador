@@ -20,7 +20,7 @@ class TeamTest extends TestCase
         $response = $this->get('/team');
 
         $response->assertSuccessful();
-        $response->assertSee('Adron Trading PLC');
+        $response->assertSee('Adorn Trading PLC');
         $response->assertSee('Local leadership with global execution.');
         $response->assertDontSee('MIRADEN', false);
     }
@@ -88,7 +88,7 @@ class TeamTest extends TestCase
             'role' => 'Senior Site Engineer',
             'bio' => 'Oversees turnkey site execution and precision joinery installation.',
             'photo' => 'team-photos/kidus.jpg',
-            'email' => 'kidus@adrontrading.com',
+            'email' => 'kidus@adorntrading.com',
             'linkedin_url' => 'https://linkedin.com/in/kidus',
             'sort_order' => 1,
             'is_active' => true,
@@ -99,7 +99,7 @@ class TeamTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee('Kidus Tesfaye');
         $response->assertSee('team-photos/kidus.jpg');
-        $response->assertSee('mailto:kidus@adrontrading.com', false);
+        $response->assertSee('mailto:kidus@adorntrading.com', false);
         $response->assertSee('https://linkedin.com/in/kidus', false);
     }
 }

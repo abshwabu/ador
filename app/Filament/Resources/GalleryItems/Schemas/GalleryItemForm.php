@@ -18,6 +18,9 @@ class GalleryItemForm
                 TextInput::make('caption'),
                 Textarea::make('description')
                     ->columnSpanFull(),
+                Textarea::make('explanation')
+                    ->label('Detailed Explanation for Enlarged Modal View')
+                    ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')

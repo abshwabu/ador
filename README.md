@@ -1,9 +1,9 @@
-# Adron Trading PLC
+# Adorn Trading PLC
 
 > **Design. Source. Deliver.**  
 > Global wholesale furnishing, interior finishing, procurement, and project support in Addis Ababa, Ethiopia.
 
-This repository contains the dynamic Laravel + Filament web application and administration portal for **Adron Trading PLC**. The platform powers the public-facing brand showcase, case studies portfolio, team roster, and an administrative control panel to manage all site copy, products, services, process steps, projects, and gallery assets.
+This repository contains the dynamic Laravel + Filament web application and administration portal for **Adorn Trading PLC**. The platform powers the public-facing brand showcase, case studies portfolio, team roster, and an administrative control panel to manage all site copy, products, services, process steps, projects, and gallery assets.
 
 ---
 
@@ -103,7 +103,7 @@ php artisan migrate --seed
 ```
 
 > **Note**: The default seeder also automatically creates a ready-to-use administrator account:
-> - **Email**: `admin@adron.com`
+> - **Email**: `admin@adorn.com`
 > - **Password**: `password`
 
 ### 5. Link Public Storage
@@ -124,7 +124,7 @@ php artisan make:filament-user
 
 You will be prompted to provide:
 1. **Name**: (e.g., `Abdulhamid Negashe`)
-2. **Email address**: (e.g., `admin@adrontrading.com`)
+2. **Email address**: (e.g., `admin@adorntrading.com`)
 3. **Password**: (e.g., `SecurePassword123`)
 
 Once created, log in at `http://localhost:8000/admin`.
@@ -197,4 +197,4 @@ All 35 tests and 252 assertions run against an isolated in-memory database.
 
 ## License
 
-This project is proprietary software belonging to **Adron Trading PLC**. All rights reserved.
+This project is proprietary software belonging to **Adorn Trading PLC**. All rights reserved.

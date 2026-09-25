@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -16,6 +17,11 @@ class ProductForm
                 TextInput::make('number_label'),
                 TextInput::make('title')
                     ->required(),
+                FileUpload::make('image')
+                    ->image()
+                    ->disk('public')
+                    ->directory('products')
+                    ->columnSpanFull(),
                 Textarea::make('description')
                     ->columnSpanFull(),
                 TextInput::make('sort_order')

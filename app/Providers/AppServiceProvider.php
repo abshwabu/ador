@@ -34,6 +34,19 @@ class AppServiceProvider extends ServiceProvider
                 return asset($path);
             }
 
+            // If file was saved to private storage, mirror it to public storage
+            $publicFile = storage_path('app/public/' . $path);
+            $privateFile = storage_path('app/private/' . $path);
+            if (! file_exists($publicFile) && file_exists($privateFile)) {
+                @mkdir(dirname($publicFile), 0755, true);
+                @copy($privateFile, $publicFile);
+            }
+
+            // If file still does not exist on disk, use fallback if provided
+            if (! file_exists($publicFile) && $fallback) {
+                return asset($fallback);
+            }
+
             return asset('storage/' . $path);
         });
 

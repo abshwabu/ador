@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('number_label')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

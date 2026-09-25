@@ -56,7 +56,7 @@ class PortfolioTest extends TestCase
         $response->assertDontSee('Secret Inactive Mansion');
 
         // Rebrand checks
-        $response->assertSee('Adron Trading PLC');
+        $response->assertSee('Adorn Trading PLC');
         $response->assertDontSee('MIRADEN', false);
     }
 
@@ -87,9 +87,10 @@ class PortfolioTest extends TestCase
             }
         }
 
-        // Rebrand checks
-        $response->assertSee('Adron Trading PLC');
+        // Rebrand & supplier checks
+        $response->assertSee('Adorn Trading PLC');
         $response->assertDontSee('MIRADEN', false);
+        $response->assertDontSee('Foshan', false);
     }
 
     public function test_portfolio_detail_returns_404_for_non_existent_project(): void

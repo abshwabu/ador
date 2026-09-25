@@ -33,7 +33,7 @@ class LayoutTest extends TestCase
             $response->assertSuccessful();
 
             // Brand & Logo
-            $response->assertSee('Adron Trading PLC');
+            $response->assertSee('Adorn Trading PLC');
             $response->assertSee('images/logo.png');
 
             // Shared Nav Links
@@ -42,7 +42,7 @@ class LayoutTest extends TestCase
 
             // Shared Footer Content from Setting
             $response->assertSee('Design. Source. Deliver.');
-            $response->assertSee('© 2026 Adron Trading PLC. All rights reserved.');
+            $response->assertSee('© 2026 Adorn Trading PLC. All rights reserved.');
 
             // Rebranding safety
             $response->assertDontSee('MIRADEN', false);
@@ -56,16 +56,16 @@ class LayoutTest extends TestCase
         // Update settings record
         $setting = Setting::first();
         $setting->update([
-            'company_name' => 'Adron Trading PLC Worldwide',
+            'company_name' => 'Adorn Trading PLC Worldwide',
             'tagline' => 'Design. Source. Deliver. Ethiopia',
-            'footer_copyright' => '© 2026 Custom Adron Copyright Line',
+            'footer_copyright' => '© 2026 Custom Adorn Copyright Line',
         ]);
 
         $response = $this->get('/');
         $response->assertSuccessful();
 
-        $response->assertSee('Adron Trading PLC Worldwide');
+        $response->assertSee('Adorn Trading PLC Worldwide');
         $response->assertSee('Design. Source. Deliver. Ethiopia');
-        $response->assertSee('© 2026 Custom Adron Copyright Line');
+        $response->assertSee('© 2026 Custom Adorn Copyright Line');
     }
 }
