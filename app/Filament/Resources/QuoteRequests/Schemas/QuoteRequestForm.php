@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\QuoteRequests\Schemas;
 
 use App\Models\QuoteRequest;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -67,14 +68,12 @@ class QuoteRequestForm
                             ->rows(3)
                             ->columnSpanFull(),
                         Grid::make(2)->schema([
-                            TextInput::make('created_at')
+                            Placeholder::make('created_at')
                                 ->label('Received')
-                                ->formatStateUsing(fn ($state): string => $state ? \Carbon\Carbon::parse($state)->diffForHumans() . ' (' . \Carbon\Carbon::parse($state)->format('M d, Y · g:i A') . ')' : '—')
-                                ->disabled(),
-                            TextInput::make('updated_at')
+                                ->content(fn (?QuoteRequest $record): string => $record?->created_at ? $record->created_at->diffForHumans() . ' (' . $record->created_at->format('M d, Y · g:i A') . ')' : '—'),
+                            Placeholder::make('updated_at')
                                 ->label('Last Activity')
-                                ->formatStateUsing(fn ($state): string => $state ? \Carbon\Carbon::parse($state)->diffForHumans() . ' (' . \Carbon\Carbon::parse($state)->format('M d, Y · g:i A') . ')' : '—')
-                                ->disabled(),
+                                ->content(fn (?QuoteRequest $record): string => $record?->updated_at ? $record->updated_at->diffForHumans() . ' (' . $record->updated_at->format('M d, Y · g:i A') . ')' : '—'),
                         ]),
                     ]),
             ]);

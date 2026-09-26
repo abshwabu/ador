@@ -88,8 +88,8 @@ class QuoteRequestsTable
                     ]),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver(),
+                EditAction::make()->slideOver(),
                 Action::make('mark_contacted')
                     ->label('Mark Contacted')
                     ->icon('heroicon-o-check-circle')

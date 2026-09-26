@@ -143,4 +143,83 @@ class QuoteRequestTest extends TestCase
         $response->assertSee('Recent Quote Requests from Homepage');
         $response->assertSee('Dawit Tsige');
     }
+
+    public function test_admin_can_view_quote_request_edit_page(): void
+    {
+        $this->seed(SettingSeeder::class);
+
+        $admin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@adorn.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $quote = QuoteRequest::create([
+            'full_name' => 'Sara Daniel',
+            'phone' => '+251 91 123 4567',
+            'city' => 'Addis Ababa',
+            'message' => 'Office furniture quotation request',
+            'status' => QuoteRequest::STATUS_NEW,
+        ]);
+
+        $response = $this->actingAs($admin)->get("/admin/quote-requests/{$quote->id}/edit");
+        $response->assertSuccessful();
+        $response->assertSee('Sara Daniel');
+        $response->assertSee('Addis Ababa');
+    }
+
+    public function test_admin_can_view_quote_request_detail_page(): void
+    {
+        $this->seed(SettingSeeder::class);
+
+        $admin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@adorn.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $quote = QuoteRequest::create([
+            'full_name' => 'Sara Daniel',
+            'phone' => '+251 91 123 4567',
+            'city' => 'Addis Ababa',
+            'message' => 'Office furniture quotation request',
+            'status' => QuoteRequest::STATUS_NEW,
+        ]);
+
+        $response = $this->actingAs($admin)->get("/admin/quote-requests/{$quote->id}");
+        $response->assertSuccessful();
+        $response->assertSee('Sara Daniel');
+    }
+
+    public function test_admin_can_save_quote_request_changes_via_livewire(): void
+    {
+        $this->seed(SettingSeeder::class);
+
+        $admin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@adorn.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $quote = QuoteRequest::create([
+            'full_name' => 'Sara Daniel',
+            'phone' => '+251 91 123 4567',
+            'city' => 'Addis Ababa',
+            'message' => 'Office furniture quotation request',
+            'status' => QuoteRequest::STATUS_NEW,
+        ]);
+
+        \Livewire\Livewire::actingAs($admin)
+            ->test(\App\Filament\Resources\QuoteRequests\Pages\EditQuoteRequest::class, ['record' => $quote->id])
+            ->set('data.status', QuoteRequest::STATUS_IN_PROGRESS)
+            ->set('data.admin_notes', 'Followed up via call. Requested floor plan.')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('quote_requests', [
+            'id' => $quote->id,
+            'status' => QuoteRequest::STATUS_IN_PROGRESS,
+            'admin_notes' => 'Followed up via call. Requested floor plan.',
+        ]);
+    }
 }
