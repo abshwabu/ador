@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent direct access to sensitive environment, source code, and configuration files
+    RewriteRule ^(\.env|\.git|composer\.(json|lock)|package\.json|artisan|storage/app/|bootstrap/cache/|database/|tests/|vendor/) - [F,L,NC]
+
+    # Rewrite all public traffic to the public/ directory if server document root is not set to public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

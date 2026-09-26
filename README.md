@@ -153,9 +153,12 @@ Visit the application in your browser:
 
 ## Production Deployment
 
-This application is fully production-ready. Follow the guide below to deploy to any Linux VPS (Ubuntu, Debian, AlmaLinux), Laravel Forge, Ploi, or cloud platform.
+This application is fully production-ready for deployment on VPS / Cloud (Forge, Ploi, Ubuntu, DigitalOcean) or **Shared Hosting (cPanel, Hostinger, Namecheap, Bluehost)**.
 
-### Deployment Checklist
+> 💡 **Deploying to Shared Hosting (cPanel / Plesk / DirectAdmin)?**  
+> See the dedicated **[Shared Hosting Deployment Guide](file:///home/abshewabu/Documents/projects/laravel/adron/SHARED_HOSTING_GUIDE.md)** for one-click ZIP packaging (`./package-for-shared-hosting.sh`), ready-to-import MySQL dump (`database/adorn_mysql_dump.sql`), and web installer assistant (`cpanel-setup.php`).
+
+### VPS / Cloud Deployment Checklist
 
 - [ ] PHP 8.2+ installed with required extensions (`ext-pdo`, `ext-mbstring`, `ext-tokenizer`, `ext-xml`, `ext-ctype`, `ext-json`, `ext-fileinfo`, `ext-sqlite3` or `ext-pdo_mysql` / `ext-pdo_pgsql`).
 - [ ] Composer 2.x installed.
