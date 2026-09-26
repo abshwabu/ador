@@ -79,8 +79,12 @@ class PortfolioTest extends TestCase
         $response->assertSee($project->category);
         $response->assertSee($project->body);
 
-        // Gallery images
+        // Gallery images & lightbox elements
         $this->assertTrue($project->images()->count() > 0);
+        $response->assertSee('project-gallery-grid');
+        $response->assertSee('project-gallery-item');
+        $response->assertSee('projectLightbox');
+        $response->assertSee('Enlarge Photo');
         foreach ($project->images as $image) {
             if ($image->caption) {
                 $response->assertSee($image->caption);
