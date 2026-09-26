@@ -612,14 +612,129 @@
       </div>
     </div>
     <div class="contact-card">
-      <form onsubmit="event.preventDefault(); alert('Thank you for contacting Adorn Trading PLC. We will reach out to you shortly.');">
-        <input required placeholder="Full name">
-        <input type="text" placeholder="Company / organization">
-        <input required type="tel" placeholder="Phone / WhatsApp">
-        <select><option>Project type</option><option>Private Villa</option><option>Apartment / Real Estate</option><option>Hotel</option><option>Commercial Office</option><option>Other</option></select>
-        <textarea required placeholder="Tell us what you need — kitchen, wardrobe, tiles, sanitary ware, lighting, furniture, full interior finishing, etc."></textarea>
-        <button class="btn btn-gold" type="submit">Request a Consultation</button>
+      @if(session('quote_success'))
+        <div id="quoteSuccessAlert" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #6ee7b7; padding: 16px 20px; border-radius: 14px; margin-bottom: 18px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <span>{{ session('quote_success') }}</span>
+        </div>
+      @endif
+
+      @if($errors->any())
+        <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fca5a5; padding: 14px 18px; border-radius: 14px; margin-bottom: 18px; font-size: 14px;">
+          <strong style="display: block; margin-bottom: 6px;">Please fix the following issues:</strong>
+          <ul style="margin: 0; padding-left: 20px;">
+            @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      <div id="quoteAjaxMessage" style="display: none; padding: 16px 20px; border-radius: 14px; margin-bottom: 18px; font-size: 15px; font-weight: 600;"></div>
+
+      <form id="quoteRequestForm" method="POST" action="{{ route('quote-requests.store') }}">
+        @csrf
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div>
+            <input required type="text" name="full_name" value="{{ old('full_name') }}" placeholder="Full name *" aria-label="Full name">
+          </div>
+          <div>
+            <input type="text" name="company" value="{{ old('company') }}" placeholder="Company / organization" aria-label="Company or organization">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div>
+            <input required type="tel" name="phone" value="{{ old('phone') }}" placeholder="Phone / WhatsApp *" aria-label="Phone number">
+          </div>
+          <div>
+            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email address (optional)" aria-label="Email address">
+          </div>
+        </div>
+
+        <div>
+          <select name="project_type" aria-label="Project type">
+            <option value="">Select Project Type</option>
+            <option value="Private Villa" {{ old('project_type') === 'Private Villa' ? 'selected' : '' }}>Private Villa</option>
+            <option value="Apartment / Real Estate" {{ old('project_type') === 'Apartment / Real Estate' ? 'selected' : '' }}>Apartment / Real Estate</option>
+            <option value="Hotel / Resort" {{ old('project_type') === 'Hotel / Resort' ? 'selected' : '' }}>Hotel / Resort</option>
+            <option value="Commercial Office" {{ old('project_type') === 'Commercial Office' ? 'selected' : '' }}>Commercial Office</option>
+            <option value="Showroom / Retail" {{ old('project_type') === 'Showroom / Retail' ? 'selected' : '' }}>Showroom / Retail</option>
+            <option value="Other" {{ old('project_type') === 'Other' ? 'selected' : '' }}>Other Project</option>
+          </select>
+        </div>
+
+        <div>
+          <textarea required name="message" rows="4" placeholder="Tell us what you need — kitchen, wardrobe, tiles, sanitary ware, lighting, furniture, full interior finishing, etc. *" aria-label="Project requirements and message">{{ old('message') }}</textarea>
+        </div>
+
+        <button id="quoteSubmitBtn" class="btn btn-gold" type="submit" style="width: 100%; cursor: pointer;">
+          <span>Request a Consultation</span>
+        </button>
       </form>
+
+      <script>
+        (function() {
+          const form = document.getElementById('quoteRequestForm');
+          const submitBtn = document.getElementById('quoteSubmitBtn');
+          const ajaxMsg = document.getElementById('quoteAjaxMessage');
+
+          if (!form) return;
+
+          form.addEventListener('submit', async function(e) {
+            // Check if Fetch API is supported
+            if (!window.fetch) return; // Fall back to regular POST
+
+            e.preventDefault();
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Submitting Request...</span>';
+            ajaxMsg.style.display = 'none';
+
+            try {
+              const formData = new FormData(form);
+              const response = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+              });
+
+              const result = await response.json();
+
+              if (response.ok && result.success) {
+                form.reset();
+                ajaxMsg.style.display = 'flex';
+                ajaxMsg.style.alignItems = 'center';
+                ajaxMsg.style.gap = '10px';
+                ajaxMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+                ajaxMsg.style.border = '1px solid #10b981';
+                ajaxMsg.style.color = '#6ee7b7';
+                ajaxMsg.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>' + result.message + '</span>';
+              } else {
+                let errorText = result.message || 'There was an issue submitting your request. Please check the fields and try again.';
+                if (result.errors) {
+                  errorText = Object.values(result.errors).flat().join('<br>');
+                }
+                ajaxMsg.style.display = 'block';
+                ajaxMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+                ajaxMsg.style.border = '1px solid #ef4444';
+                ajaxMsg.style.color = '#fca5a5';
+                ajaxMsg.innerHTML = errorText;
+              }
+            } catch (err) {
+              // On network error, submit naturally
+              form.submit();
+              return;
+            } finally {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnHtml;
+            }
+          });
+        })();
+      </script>
     </div>
   </div>
 </section>

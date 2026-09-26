@@ -317,6 +317,10 @@ The administration portal at `/admin` enables full control over all website cont
   - **Gallery Items**: Image upload, caption, title, and description.
   - **Team Members**: Name, role, bio, photo upload, email, LinkedIn, and featured toggle.
   - **Projects**: Portfolio case study metadata, slug, cover image, body narrative, and gallery relation manager.
+  - **Quote Requests**: Client inquiry inbox displaying quote requests from the homepage consultation form with unread badges, status workflow (New, Contacted, In Progress, Completed, Archived), client details, and internal staff follow-up notes.
+- **Dashboard Widgets**:
+  - **Inquiry Stats**: Live counters for New Inquiries, In Follow-Up, and Total Inquiries.
+  - **Recent Quote Requests**: Interactive table displaying recent homepage inquiries directly on the main admin dashboard for quick response.
 
 ---
 
