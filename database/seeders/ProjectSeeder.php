@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class ProjectSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        if (File::exists(public_path('images/projects'))) {
+            File::ensureDirectoryExists(storage_path('app/public/projects'));
+            File::copyDirectory(public_path('images/projects'), storage_path('app/public/projects'));
+        }
+
         $projects = [
             [
                 'title' => 'Bole Luxury Villa Interior',

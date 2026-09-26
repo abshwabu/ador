@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\TeamMember;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class ContentSeeder extends Seeder
 {
@@ -16,6 +17,11 @@ class ContentSeeder extends Seeder
      */
     public function run(): void
     {
+        if (File::exists(public_path('images/products'))) {
+            File::ensureDirectoryExists(storage_path('app/public/products'));
+            File::copyDirectory(public_path('images/products'), storage_path('app/public/products'));
+        }
+
         // 1. Products (Homepage "Products" cards)
         $products = [
             [

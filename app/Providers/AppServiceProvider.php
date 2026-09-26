@@ -42,6 +42,11 @@ class AppServiceProvider extends ServiceProvider
                 @copy($privateFile, $publicFile);
             }
 
+            // If file exists in public/images/, return it directly
+            if (! file_exists($publicFile) && file_exists(public_path('images/' . $path))) {
+                return asset('images/' . $path);
+            }
+
             // If file still does not exist on disk, use fallback if provided
             if (! file_exists($publicFile) && $fallback) {
                 return asset($fallback);

@@ -18,7 +18,13 @@ This repository contains the dynamic Laravel + Filament web application and admi
   - [4. Database Migration & Seeding](#4-database-migration--seeding)
   - [5. Link Public Storage](#5-link-public-storage)
   - [6. Create an Admin User](#6-create-an-admin-user)
-  - [7. Start the Development Server](#7-start-the-development-server)
+- [Production Deployment](#production-deployment)
+  - [Deployment Checklist](#deployment-checklist)
+  - [Automated Deployment Script](#automated-deployment-script)
+  - [Manual Step-by-Step Deployment](#manual-step-by-step-deployment)
+  - [Web Server Configuration (Nginx)](#web-server-configuration-nginx)
+  - [File Permissions & Security](#file-permissions--security)
+  - [Cron & Task Scheduling](#cron--task-scheduling)
 - [Public Routes & Views](#public-routes--views)
 - [Filament Admin Panel](#filament-admin-panel)
 - [Running Automated Tests](#running-automated-tests)
@@ -142,6 +148,136 @@ Visit the application in your browser:
 - **Portfolio**: [http://localhost:8000/portfolio](http://localhost:8000/portfolio)
 - **Team**: [http://localhost:8000/team](http://localhost:8000/team)
 - **Admin Panel**: [http://localhost:8000/admin](http://localhost:8000/admin)
+
+---
+
+## Production Deployment
+
+This application is fully production-ready. Follow the guide below to deploy to any Linux VPS (Ubuntu, Debian, AlmaLinux), Laravel Forge, Ploi, or cloud platform.
+
+### Deployment Checklist
+
+- [ ] PHP 8.2+ installed with required extensions (`ext-pdo`, `ext-mbstring`, `ext-tokenizer`, `ext-xml`, `ext-ctype`, `ext-json`, `ext-fileinfo`, `ext-sqlite3` or `ext-pdo_mysql` / `ext-pdo_pgsql`).
+- [ ] Composer 2.x installed.
+- [ ] Web server (Nginx or Apache) configured to point its document root to the `public/` directory.
+- [ ] SSL certificate active (e.g. Let's Encrypt / Certbot).
+- [ ] Correct file ownership (`www-data:www-data`) and permissions for `storage/` and `bootstrap/cache/`.
+- [ ] `APP_ENV=production` and `APP_DEBUG=false` set in `.env`.
+- [ ] `APP_URL` matching your live production domain (e.g. `https://adorntrading.com`).
+
+---
+
+### Automated Deployment Script
+
+An executable deployment script [`deploy.sh`](file:///home/abshewabu/Documents/projects/laravel/adron/deploy.sh) is included at the root of the repository:
+
+```bash
+# Standard deployment (pulls git, installs prod dependencies, runs migrations, clears & builds caches):
+./deploy.sh
+
+# Initial deployment or re-seeding default content and demo assets:
+./deploy.sh --seed
+```
+
+What `deploy.sh` does automatically:
+1. Puts the site into maintenance mode (`php artisan down`).
+2. Pulls the latest commits from the `main` branch.
+3. Runs `composer install --no-dev --optimize-autoloader`.
+4. Executes database migrations (`php artisan migrate --force`).
+5. Ensures public storage symlinks (`php artisan storage:link`).
+6. Copies seed assets into public storage if `--seed` flag is passed.
+7. Optimizes configuration, route, view, and event caches.
+8. Optimizes Filament admin panel assets.
+9. Restarts background workers and brings the application live (`php artisan up`).
+
+---
+
+### Manual Step-by-Step Deployment
+
+If you prefer deploying manually or via a CI/CD pipeline (e.g., GitHub Actions, Forge, Ploi):
+
+```bash
+# 1. Clone repository to web root
+git clone https://github.com/abshwabu/ador.git /var/www/adorn
+cd /var/www/adorn
+
+# 2. Configure production environment
+cp .env.example .env
+nano .env
+
+# Configure key variables:
+# APP_NAME="Adorn Trading PLC"
+# APP_ENV=production
+# APP_DEBUG=false
+# APP_URL=https://your-domain.com
+# FILESYSTEM_DISK=public
+
+# 3. Install production dependencies
+composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+
+# 4. Generate application key
+php artisan key:generate
+
+# 5. Database setup (SQLite or MySQL/PostgreSQL)
+# If using SQLite:
+touch database/database.sqlite
+chmod 664 database/database.sqlite
+
+# Run migrations and seed default content:
+php artisan migrate --force --seed
+
+# 6. Create symbolic storage link
+php artisan storage:link
+
+# 7. Production caching & optimization
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+php artisan filament:optimize
+```
+
+---
+
+### Web Server Configuration (Nginx)
+
+A production-ready Nginx server block template is provided in [`nginx.conf.example`](file:///home/abshewabu/Documents/projects/laravel/adron/nginx.conf.example).
+
+Key configuration requirements:
+- Document root must be `/var/www/adorn/public` (NOT the project root).
+- Ensure `client_max_body_size 64M;` is configured to allow high-resolution project portfolio photo uploads via Filament.
+- Configure SSL using Certbot:
+  ```bash
+  sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+  ```
+
+---
+
+### File Permissions & Security
+
+Grant proper permissions to the web server user (`www-data` on Ubuntu/Debian):
+
+```bash
+sudo chown -R www-data:www-data /var/www/adorn/storage /var/www/adorn/bootstrap/cache /var/www/adorn/database
+sudo chmod -R 775 /var/www/adorn/storage /var/www/adorn/bootstrap/cache
+```
+
+If using SQLite:
+```bash
+sudo chmod 664 /var/www/adorn/database/database.sqlite
+sudo chmod 775 /var/www/adorn/database
+```
+
+---
+
+### Cron & Task Scheduling
+
+To enable Laravel's built-in scheduler, add this single entry to your server's crontab (`crontab -e -u www-data`):
+
+```cron
+* * * * * cd /var/www/adorn && php artisan schedule:run >> /dev/null 2>&1
+```
 
 ---
 
