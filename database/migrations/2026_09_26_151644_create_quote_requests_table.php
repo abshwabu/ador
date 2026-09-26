@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->string('phone');
             $table->string('email')->nullable();
+            $table->string('city', 150)->nullable();
             $table->string('project_type')->nullable();
             $table->text('message');
             $table->string('status', 50)->default('new'); // new, contacted, in_progress, completed, archived

@@ -652,16 +652,21 @@
           </div>
         </div>
 
-        <div>
-          <select name="project_type" aria-label="Project type">
-            <option value="">Select Project Type</option>
-            <option value="Private Villa" {{ old('project_type') === 'Private Villa' ? 'selected' : '' }}>Private Villa</option>
-            <option value="Apartment / Real Estate" {{ old('project_type') === 'Apartment / Real Estate' ? 'selected' : '' }}>Apartment / Real Estate</option>
-            <option value="Hotel / Resort" {{ old('project_type') === 'Hotel / Resort' ? 'selected' : '' }}>Hotel / Resort</option>
-            <option value="Commercial Office" {{ old('project_type') === 'Commercial Office' ? 'selected' : '' }}>Commercial Office</option>
-            <option value="Showroom / Retail" {{ old('project_type') === 'Showroom / Retail' ? 'selected' : '' }}>Showroom / Retail</option>
-            <option value="Other" {{ old('project_type') === 'Other' ? 'selected' : '' }}>Other Project</option>
-          </select>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div>
+            <input type="text" name="city" value="{{ old('city') }}" placeholder="City / Location (e.g. Addis Ababa)" aria-label="City or location">
+          </div>
+          <div>
+            <select name="project_type" aria-label="Project type">
+              <option value="">Select Project Type</option>
+              <option value="Private Villa" {{ old('project_type') === 'Private Villa' ? 'selected' : '' }}>Private Villa</option>
+              <option value="Apartment / Real Estate" {{ old('project_type') === 'Apartment / Real Estate' ? 'selected' : '' }}>Apartment / Real Estate</option>
+              <option value="Hotel / Resort" {{ old('project_type') === 'Hotel / Resort' ? 'selected' : '' }}>Hotel / Resort</option>
+              <option value="Commercial Office" {{ old('project_type') === 'Commercial Office' ? 'selected' : '' }}>Commercial Office</option>
+              <option value="Showroom / Retail" {{ old('project_type') === 'Showroom / Retail' ? 'selected' : '' }}>Showroom / Retail</option>
+              <option value="Other" {{ old('project_type') === 'Other' ? 'selected' : '' }}>Other Project</option>
+            </select>
+          </div>
         </div>
 
         <div>

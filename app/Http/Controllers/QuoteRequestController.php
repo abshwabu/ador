@@ -19,6 +19,7 @@ class QuoteRequestController extends Controller
             'company' => ['nullable', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
             'email' => ['nullable', 'email', 'max:255'],
+            'city' => ['nullable', 'string', 'max:150'],
             'project_type' => ['nullable', 'string', 'max:100'],
             'message' => ['required', 'string', 'max:5000'],
         ]);

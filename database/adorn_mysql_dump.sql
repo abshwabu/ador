@@ -135,7 +135,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2026_09_24_081525_create_team_members_table', 1),
 (10, '2026_09_24_081917_create_projects_table', 1),
 (11, '2026_09_24_081918_create_project_images_table', 1),
-(12, '2026_09_26_151644_create_quote_requests_table', 2);
+(12, '2026_09_26_151644_create_quote_requests_table', 2),
+(13, '2026_09_26_160600_add_city_to_quote_requests_table', 3);
 
 -- Table structure for `settings`
 DROP TABLE IF EXISTS `settings`;
@@ -373,6 +374,7 @@ CREATE TABLE IF NOT EXISTS `quote_requests` (
   `company` varchar(255) DEFAULT NULL,
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `city` varchar(150) DEFAULT NULL,
   `project_type` varchar(255) DEFAULT NULL,
   `message` text NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'new',
@@ -384,10 +386,10 @@ CREATE TABLE IF NOT EXISTS `quote_requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for `quote_requests`
-INSERT INTO `quote_requests` (`id`, `full_name`, `company`, `phone`, `email`, `project_type`, `message`, `status`, `admin_notes`, `ip_address`, `created_at`, `updated_at`) VALUES
-(1, 'Dr. Michael Tadesse', 'Blue Nile Medical Center', '+251 91 123 4567', 'dr.michael@bluenile.com', 'Commercial Office', 'We are outfitting a new 4-story medical center in Bole. Looking for turnkey supply of interior partitions, acoustic ceilings, high-durability floor tiles, and custom executive consultation desks.', 'new', NULL, NULL, '2026-09-26 12:53:21', '2026-09-26 15:53:21'),
-(2, 'Sara Alemayehu', 'Private Residence', '+251 92 234 5678', 'sara.alem@gmail.com', 'Private Villa', 'Building a luxury G+2 villa in CMC. Need complete imported kitchen cabinetry with island quartz countertops, master walk-in wardrobe casework, and modern sanitary ware packages.', 'contacted', 'Called client on phone. Requested architectural floor plan and elevation drawings for kitchen layout.', NULL, '2026-09-25 15:53:21', '2026-09-26 15:53:21'),
-(3, 'Yonas Kebede', 'Apex Real Estate Developments', '+251 93 345 6789', 'yonas@apexrealestate.et', 'Apartment / Real Estate', 'Developing 48 apartment units near Kazanchis. Requesting wholesale container pricing and BOQ estimate for standardized modular kitchen cabinets, porcelain tiles, and aluminium door systems.', 'in_progress', 'Sent preliminary material sample catalog and container pricing schedule. Follow-up meeting scheduled for Tuesday.', NULL, '2026-09-24 15:53:21', '2026-09-26 15:53:21');
+INSERT INTO `quote_requests` (`id`, `full_name`, `company`, `phone`, `email`, `project_type`, `message`, `status`, `admin_notes`, `ip_address`, `created_at`, `updated_at`, `city`) VALUES
+(1, 'Dr. Michael Tadesse', 'Blue Nile Medical Center', '+251 91 123 4567', 'dr.michael@bluenile.com', 'Commercial Office', 'We are outfitting a new 4-story medical center in Bole. Looking for turnkey supply of interior partitions, acoustic ceilings, high-durability floor tiles, and custom executive consultation desks.', 'new', NULL, NULL, '2026-09-26 16:08:27', '2026-09-26 16:08:27', 'Bole, Addis Ababa'),
+(2, 'Sara Alemayehu', 'Private Residence', '+251 92 234 5678', 'sara.alem@gmail.com', 'Private Villa', 'Building a luxury G+2 villa in CMC. Need complete imported kitchen cabinetry with island quartz countertops, master walk-in wardrobe casework, and modern sanitary ware packages.', 'contacted', 'Called client on phone. Requested architectural floor plan and elevation drawings for kitchen layout.', NULL, '2026-09-26 16:08:27', '2026-09-26 16:08:27', 'CMC, Addis Ababa'),
+(3, 'Yonas Kebede', 'Apex Real Estate Developments', '+251 93 345 6789', 'yonas@apexrealestate.et', 'Apartment / Real Estate', 'Developing 48 apartment units near Kazanchis. Requesting wholesale container pricing and BOQ estimate for standardized modular kitchen cabinets, porcelain tiles, and aluminium door systems.', 'in_progress', 'Sent preliminary material sample catalog and container pricing schedule. Follow-up meeting scheduled for Tuesday.', NULL, '2026-09-26 16:08:27', '2026-09-26 16:08:27', 'Kazanchis, Addis Ababa');
 
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;

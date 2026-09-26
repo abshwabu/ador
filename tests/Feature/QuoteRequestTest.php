@@ -19,6 +19,7 @@ class QuoteRequestTest extends TestCase
         $response = $this->get('/');
         $response->assertSuccessful();
         $response->assertSee('name="full_name"', false);
+        $response->assertSee('name="city"', false);
         $response->assertSee('name="phone"', false);
         $response->assertSee('name="project_type"', false);
         $response->assertSee('name="message"', false);
@@ -30,6 +31,7 @@ class QuoteRequestTest extends TestCase
         $payload = [
             'full_name' => 'Abebe Bikila',
             'company' => 'Bikila Logistics',
+            'city' => 'Addis Ababa',
             'phone' => '+251 91 234 5678',
             'email' => 'abebe@bikilalogistics.com',
             'project_type' => 'Commercial Office',
@@ -44,6 +46,7 @@ class QuoteRequestTest extends TestCase
         $this->assertDatabaseHas('quote_requests', [
             'full_name' => 'Abebe Bikila',
             'company' => 'Bikila Logistics',
+            'city' => 'Addis Ababa',
             'phone' => '+251 91 234 5678',
             'email' => 'abebe@bikilalogistics.com',
             'project_type' => 'Commercial Office',
@@ -56,6 +59,7 @@ class QuoteRequestTest extends TestCase
         $payload = [
             'full_name' => 'Helen Getachew',
             'company' => 'Private Villa',
+            'city' => 'Hawassa',
             'phone' => '+251 94 456 7890',
             'email' => 'helen@gmail.com',
             'project_type' => 'Private Villa',
@@ -71,6 +75,7 @@ class QuoteRequestTest extends TestCase
 
         $this->assertDatabaseHas('quote_requests', [
             'full_name' => 'Helen Getachew',
+            'city' => 'Hawassa',
             'status' => QuoteRequest::STATUS_NEW,
         ]);
     }
@@ -98,6 +103,7 @@ class QuoteRequestTest extends TestCase
         $quote = QuoteRequest::create([
             'full_name' => 'Almaz Ayana',
             'company' => 'Ayana Holdings',
+            'city' => 'Bishoftu',
             'phone' => '+251 95 567 8901',
             'email' => 'almaz@ayana.com',
             'project_type' => 'Hotel / Resort',
@@ -110,6 +116,7 @@ class QuoteRequestTest extends TestCase
         $response->assertSee('Quote Requests');
         $response->assertSee('Almaz Ayana');
         $response->assertSee('Ayana Holdings');
+        $response->assertSee('Bishoftu');
     }
 
     public function test_admin_dashboard_renders_with_quote_request_widgets(): void

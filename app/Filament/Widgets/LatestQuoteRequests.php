@@ -26,18 +26,20 @@ class LatestQuoteRequests extends BaseWidget
             ->columns([
                 TextColumn::make('created_at')
                     ->label('Received')
-                    ->dateTime('M d, Y h:i A')
+                    ->since()
+                    ->description(fn (QuoteRequest $record): string => $record->created_at?->format('M d, Y · g:i A') ?? '')
                     ->sortable(),
                 TextColumn::make('full_name')
                     ->label('Client Name')
                     ->weight('bold')
                     ->searchable(),
+                TextColumn::make('city')
+                    ->label('City / Location')
+                    ->placeholder('Addis Ababa')
+                    ->searchable(),
                 TextColumn::make('phone')
                     ->label('Phone / WhatsApp')
                     ->copyable(),
-                TextColumn::make('company')
-                    ->label('Company')
-                    ->placeholder('Individual Client'),
                 TextColumn::make('project_type')
                     ->label('Project Type')
                     ->badge(),

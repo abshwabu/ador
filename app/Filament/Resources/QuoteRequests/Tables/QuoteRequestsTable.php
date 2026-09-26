@@ -23,13 +23,19 @@ class QuoteRequestsTable
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Received')
-                    ->dateTime('M d, Y h:i A')
+                    ->since()
+                    ->description(fn (QuoteRequest $record): string => $record->created_at?->format('M d, Y · g:i A') ?? '')
                     ->sortable(),
                 TextColumn::make('full_name')
                     ->label('Client Name')
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
+                TextColumn::make('city')
+                    ->label('City / Location')
+                    ->placeholder('Addis Ababa')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('company')
                     ->label('Company')
                     ->searchable()

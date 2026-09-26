@@ -28,6 +28,7 @@ class QuoteRequest extends Model
         'company',
         'phone',
         'email',
+        'city',
         'project_type',
         'message',
         'status',

@@ -32,6 +32,9 @@ class QuoteRequestForm
                             TextInput::make('email')
                                 ->label('Email Address')
                                 ->email(),
+                            TextInput::make('city')
+                                ->label('City / Location')
+                                ->placeholder('e.g. Addis Ababa, Hawassa'),
                             Select::make('project_type')
                                 ->label('Project Type')
                                 ->options([
@@ -64,11 +67,13 @@ class QuoteRequestForm
                             ->rows(3)
                             ->columnSpanFull(),
                         Grid::make(2)->schema([
-                            TextInput::make('ip_address')
-                                ->label('Submitted from IP')
-                                ->disabled(),
                             TextInput::make('created_at')
-                                ->label('Submission Date')
+                                ->label('Received')
+                                ->formatStateUsing(fn ($state): string => $state ? \Carbon\Carbon::parse($state)->diffForHumans() . ' (' . \Carbon\Carbon::parse($state)->format('M d, Y · g:i A') . ')' : '—')
+                                ->disabled(),
+                            TextInput::make('updated_at')
+                                ->label('Last Activity')
+                                ->formatStateUsing(fn ($state): string => $state ? \Carbon\Carbon::parse($state)->diffForHumans() . ' (' . \Carbon\Carbon::parse($state)->format('M d, Y · g:i A') . ')' : '—')
                                 ->disabled(),
                         ]),
                     ]),
