@@ -282,7 +282,7 @@
   </div>
 </section>
 
-<section class="section alt" id="gallery">
+<section class="section" id="gallery">
   <div class="container">
     <div class="section-head">
       <div class="kicker">Visual Inspiration</div>
@@ -583,7 +583,7 @@
   })();
 </script>
 
-<section id="contact" class="section">
+<section id="contact" class="section alt">
   <div class="container contact-grid">
     <div>
       <div class="kicker">{{ $settings->contact_kicker ?? 'Start a Project' }}</div>

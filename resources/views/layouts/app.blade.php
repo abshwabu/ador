@@ -30,15 +30,26 @@
   --gold:#c9a227;               /* Classic brand gold */
   --gold-bright:#e5b83b;        /* High-contrast CTA gold */
   --gold2:#f0cf63;              /* Tinted accent gold (10.16:1 AAA) */
+  --gold-dark:#996515;          /* Warm gold for light backgrounds (WCAG AAA 7:1) */
   --coral:#ed9c39;              /* Logo warm amber accent */
   --rose:#d22f49;               /* Logo ruby/coral accent */
   --ink:#f3f6fa;                /* Primary heading & text (14.26:1 AAA) */
   --muted:#a4b8ce;              /* Secondary readable text (7.6:1 AAA) */
-  --cream:#062f4f;              /* Subtle alt section background */
+  --cream:#f8fafc;              /* Crisp light/white section background (replaces light navy) */
   --white:#fff;
   --line:rgba(255,255,255,.1);  /* Line dividers */
   --shadow:0 20px 60px rgba(0,0,0,.35);
   --radius:22px;
+
+  /* High-Contrast Light / White Section Design System (per Robi's guidelines) */
+  --light-bg:#f8fafc;           /* Subtle off-white (prevents halation) */
+  --light-surface:#ffffff;      /* Pure white cards on light background */
+  --light-border:rgba(4,38,65,.09);
+  --light-border-hover:rgba(180,134,8,.35);
+  --light-ink:#042641;          /* Deep navy heading & text on white (14.3:1 AAA) */
+  --light-muted:#475569;        /* Secondary readable text on white (7.2:1 AAA) */
+  --light-shadow:0 4px 20px rgba(4,38,65,.06);
+  --light-shadow-hover:0 14px 34px rgba(4,38,65,.12);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -69,10 +80,69 @@ img{max-width:100%;display:block}
 .kicker{display:inline-flex;gap:10px;align-items:center;color:var(--gold2);font-weight:800;letter-spacing:.18em;font-size:12px;text-transform:uppercase}
 .kicker:before{content:"";width:34px;height:2px;background:var(--gold2)}
 .section{padding:100px 0}
-.section.alt{background:var(--cream)}
+.section.alt{background:var(--light-bg);color:var(--light-ink);position:relative;border-top:1px solid var(--light-border);border-bottom:1px solid var(--light-border)}
 .section-head{max-width:760px;margin-bottom:42px}
 .section-head h2{font-family:Georgia,serif;font-size:44px;line-height:1.1;color:#fff;margin:10px 0 14px}
 .section-head p{color:var(--muted);font-size:17px}
+
+/* ==========================================================================
+   High-Contrast Light / White Sections (Per Robi's Design Best Practice)
+   ========================================================================== */
+.section.alt .section-head h2{color:var(--light-ink)}
+.section.alt .section-head p{color:var(--light-muted)}
+.section.alt .kicker{color:var(--gold-dark)}
+.section.alt .kicker:before{background:var(--gold-dark)}
+
+/* Products in Light Sections */
+.section.alt .products .product{background:var(--light-surface);border:1px solid var(--light-border);box-shadow:var(--light-shadow)}
+.section.alt .products .product:hover{transform:translateY(-6px);border-color:var(--light-border-hover);box-shadow:var(--light-shadow-hover)}
+.section.alt .product h3{color:var(--light-ink)}
+.section.alt .product p{color:var(--light-muted)}
+.section.alt .product .number{color:var(--gold-dark)}
+
+/* Process Steps in Light Sections */
+.section.alt .process .step{background:var(--light-surface);border:1px solid var(--light-border);box-shadow:var(--light-shadow);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.section.alt .process .step:hover{transform:translateY(-4px);border-color:var(--light-border-hover);box-shadow:var(--light-shadow-hover)}
+.section.alt .step b{color:var(--gold-dark)}
+.section.alt .step h3{color:var(--light-ink)}
+.section.alt .step p{color:var(--light-muted)}
+
+/* Stats in Light Sections */
+.section.alt .stats .stat{background:var(--light-surface);border:1px solid var(--light-border);box-shadow:var(--light-shadow);transition:transform .25s ease,box-shadow .25s ease}
+.section.alt .stats .stat:hover{transform:translateY(-3px);box-shadow:var(--light-shadow-hover)}
+.section.alt .stats .stat b{color:var(--light-ink)}
+.section.alt .stats .stat span{color:var(--light-muted)}
+
+/* Contact & Forms in Light Sections */
+.section.alt .contact-card{background:var(--light-surface);border:1px solid var(--light-border);box-shadow:var(--light-shadow)}
+.section.alt .contact-item{border-bottom:1px solid rgba(4,38,65,.08)}
+.section.alt .contact-item small{color:var(--gold-dark)}
+.section.alt .contact-item b{color:var(--light-ink)}
+.section.alt .contact-item span,.section.alt .contact-item p{color:var(--light-muted)}
+.section.alt .contact-item a{color:var(--light-ink)}
+.section.alt .contact-item a:hover{color:var(--gold-dark)}
+.section.alt input,.section.alt textarea,.section.alt select{background:#ffffff;color:var(--light-ink);border:1px solid rgba(4,38,65,.18);transition:border-color .2s ease,box-shadow .2s ease}
+.section.alt select option{background:#ffffff;color:var(--light-ink)}
+.section.alt input::placeholder,.section.alt textarea::placeholder{color:#7b90a6}
+.section.alt input:focus,.section.alt textarea:focus,.section.alt select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.2);outline:none}
+.section.alt #quoteSuccessAlert{color:#065f46;background:rgba(16,185,129,.12);border-color:#10b981}
+.section.alt #quoteAjaxMessage{color:#065f46}
+
+/* Project Gallery Showcase (e.g. portfolio detail) in Light Sections */
+.section.alt .project-gallery-item{background:var(--light-surface);border:1px solid var(--light-border);box-shadow:var(--light-shadow)}
+.section.alt .project-gallery-item:hover{transform:translateY(-5px);border-color:var(--light-border-hover);box-shadow:var(--light-shadow-hover)}
+.section.alt .project-gallery-info{background:var(--light-surface);border-top:1px solid var(--light-border)}
+.section.alt .project-gallery-caption{color:var(--light-ink)}
+.section.alt .project-gallery-counter{color:var(--gold-dark)}
+
+/* Buttons & Checks in Light Sections */
+.section.alt .btn-dark{background:var(--navy);color:#fff;border-color:var(--navy)}
+.section.alt .btn-dark:hover{background:var(--gold-bright);color:var(--navy);border-color:var(--gold-bright)}
+.section.alt .btn-outline{border-color:var(--navy);color:var(--navy)}
+.section.alt .btn-outline:hover{background:var(--navy);color:#fff}
+.section.alt .check i{background:rgba(201,162,39,.15);color:var(--gold-dark)}
+.section.alt .check b{color:var(--light-ink)}
+.section.alt .check span{color:var(--light-muted)}
 
 /* Page Hero for Subpages */
 .page-hero{
