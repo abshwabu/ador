@@ -54,7 +54,7 @@
     <div class="container">
       <div class="project-content-wrap">
         <div class="kicker" style="margin-bottom: 12px;">Project Scope & Execution</div>
-        <h2 style="font-family: Georgia, serif; font-size: 32px; color: #fff; margin-top: 0; margin-bottom: 24px;">Project Overview</h2>
+        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.02em; font-size: 32px; color: #fff; margin-top: 0; margin-bottom: 24px;">Project Overview</h2>
         {!! nl2br(e($project->body)) !!}
       </div>
     </div>

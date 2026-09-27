@@ -19,6 +19,12 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+
+<!-- Typography: Montserrat Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --navy:#042641;               /* Exact logo background: rgb(4, 38, 65) */
@@ -65,7 +71,8 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--navy);line-height:1.6}
+body{margin:0;font-family:'Montserrat',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--navy);line-height:1.6}
+button,input,textarea,select{font-family:inherit}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 .container{width:min(1180px,92%);margin:auto}
@@ -169,7 +176,7 @@ section[id]{scroll-margin-top:100px}
   z-index:1;
 }
 .section-head{max-width:760px;margin-bottom:42px}
-.section-head h2{font-family:Georgia,serif;font-size:44px;line-height:1.1;color:#fff;margin:10px 0 14px}
+.section-head h2{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:44px;line-height:1.15;color:#fff;margin:10px 0 14px}
 .section-head p{color:var(--muted);font-size:17px}
 
 /* ==========================================================================
@@ -239,7 +246,7 @@ section[id]{scroll-margin-top:100px}
     linear-gradient(180deg,#042641 0%,#031c30 100%);
   text-align:center;
 }
-.page-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);line-height:1.1;color:#fff;margin:14px 0}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-weight:850;letter-spacing:-0.03em;font-size:clamp(40px,5vw,64px);line-height:1.1;color:#fff;margin:14px 0}
 .page-hero p{font-size:18px;color:var(--muted);max-width:720px;margin:0 auto 24px}
 
 /* Breadcrumbs */
@@ -290,7 +297,7 @@ section[id]{scroll-margin-top:100px}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
 .hero .kicker{color:var(--coral-dark)}
 .hero .kicker:before{background:var(--logo-gradient-h)}
-.hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6vw,78px);line-height:1.02;color:var(--light-ink);margin:18px 0}
+.hero h1{font-family:'Montserrat',sans-serif;font-weight:850;letter-spacing:-0.03em;font-size:clamp(44px,5.8vw,76px);line-height:1.05;color:var(--light-ink);margin:18px 0}
 .hero h1 span{background:var(--logo-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
 .hero p{font-size:18px;color:var(--light-muted);max-width:650px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
@@ -351,7 +358,7 @@ section[id]{scroll-margin-top:100px}
 /* Partner / Solutions */
 .partner{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
 .partner-card{padding:38px 42px;border-radius:24px;background:var(--navy-surface);border:1px solid var(--navy-border);color:#fff;box-shadow:var(--shadow);margin-bottom:30px}
-.partner-card h3{font-family:Georgia,serif;font-size:30px;margin:0 0 10px;color:#fff}
+.partner-card h3{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:30px;margin:0 0 10px;color:#fff}
 .partner-card p{color:var(--muted);font-size:16px;line-height:1.6;margin:0;max-width:760px}
 .partner-card-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
 
@@ -366,7 +373,7 @@ section[id]{scroll-margin-top:100px}
   border-radius:28px;
   padding:55px;
 }
-.quote h2{font-family:Georgia,serif;font-size:42px;line-height:1.1;margin:0 0 14px;color:#fff}
+.quote h2{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:42px;line-height:1.15;margin:0 0 14px;color:#fff}
 .quote p{color:var(--muted);max-width:720px}
 .cta-banner{
   background:
@@ -380,7 +387,7 @@ section[id]{scroll-margin-top:100px}
   text-align:center;
   margin-top:60px;
 }
-.cta-banner h2{font-family:Georgia,serif;font-size:36px;margin:0 0 12px;color:#fff}
+.cta-banner h2{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:36px;margin:0 0 12px;color:#fff}
 .cta-banner p{color:var(--muted);max-width:620px;margin:0 auto 24px}
 
 /* Gallery Slideshow & Showcase */
@@ -395,7 +402,7 @@ section[id]{scroll-margin-top:100px}
 
 .slide-info{position:absolute;z-index:3;left:32px;bottom:30px;right:130px;color:#fff;pointer-events:none}
 .slide-kicker{display:inline-block;color:var(--amber-light);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.slide-title{font-family:Georgia,serif;font-size:30px;font-weight:700;color:#fff;margin:0 0 8px;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.slide-title{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:30px;color:#fff;margin:0 0 8px;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.7)}
 .slide-desc{font-size:14px;color:rgba(248,250,252,.9);line-height:1.5;margin:0;max-width:560px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 
 .slide-expand-pill{position:absolute;top:20px;right:20px;z-index:5;background:rgba(4,38,65,.85);backdrop-filter:blur(10px);border:1px solid rgba(237,156,57,.45);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;padding:8px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all .25s ease;box-shadow:0 4px 14px rgba(0,0,0,.25)}
@@ -445,7 +452,7 @@ section[id]{scroll-margin-top:100px}
 .modal-counter-tag{position:absolute;bottom:20px;left:20px;background:rgba(4,38,65,.85);border:1px solid rgba(237,156,57,.35);color:var(--amber-light);font-size:12px;font-weight:800;letter-spacing:.1em;padding:4px 12px;border-radius:999px}
 .modal-content{padding:44px 38px;display:flex;flex-direction:column;overflow-y:auto;background:#042641}
 .modal-kicker{color:var(--amber-light);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-.modal-title{font-family:Georgia,serif;font-size:32px;font-weight:700;color:#fff;margin:0 0 12px;line-height:1.2}
+.modal-title{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:32px;color:#fff;margin:0 0 12px;line-height:1.2}
 .modal-desc{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:20px}
 .modal-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:22px}
 .modal-section-label{color:var(--amber-light);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
@@ -481,7 +488,7 @@ section[id]{scroll-margin-top:100px}
 .team-featured-badge{position:absolute;top:16px;right:16px;z-index:2;background:var(--logo-gradient-h);color:#042641;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
 .team-img-wrap{position:relative;width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,var(--navy),var(--navy-surface));overflow:hidden}
 .team-img-wrap img{width:100%;height:100%;object-fit:cover}
-.team-avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:54px;font-weight:700;color:var(--amber-light);background:linear-gradient(145deg,var(--navy),var(--navy-surface))}
+.team-avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:54px;font-weight:800;color:var(--amber-light);background:linear-gradient(145deg,var(--navy),var(--navy-surface))}
 .team-body{padding:26px;flex:1;display:flex;flex-direction:column}
 .team-role{color:var(--amber-light);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
 .team-name{color:#fff;font-size:20px;font-weight:750;margin:0 0 10px;line-height:1.25}
@@ -501,7 +508,7 @@ section[id]{scroll-margin-top:100px}
 .project-featured{position:absolute;top:16px;right:16px;z-index:2;background:var(--logo-gradient-h);color:#042641;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
 .project-body{padding:26px;flex:1;display:flex;flex-direction:column}
 .project-category{color:var(--amber-light);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
-.project-title{color:#fff;font-family:Georgia,serif;font-size:22px;font-weight:700;margin:0 0 12px;line-height:1.25}
+.project-title{color:#fff;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px;line-height:1.25}
 .project-title a{color:#fff}
 .project-title a:hover{color:var(--coral)}
 .project-excerpt{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 20px;flex:1}
@@ -511,7 +518,7 @@ section[id]{scroll-margin-top:100px}
 
 /* Project Detail */
 .project-hero{padding:160px 0 45px;background:radial-gradient(circle at 80% 20%,rgba(245,163,55,.16),transparent 35%),radial-gradient(circle at 15% 85%,rgba(210,47,73,.10),transparent 40%),linear-gradient(180deg,#042641 0%,#031c30 100%)}
-h1.project-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,5.5vw,56px);line-height:1.12;color:#fff;margin:12px 0 18px}
+h1.project-title{font-family:'Montserrat',sans-serif;font-weight:850;letter-spacing:-0.03em;font-size:clamp(36px,5.5vw,56px);line-height:1.12;color:#fff;margin:12px 0 18px}
 .project-lead{font-size:18px;color:var(--muted);max-width:820px;line-height:1.65;margin:0 0 32px}
 .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
 .meta-item{padding:20px;background:var(--navy-surface);border:1px solid var(--navy-border);border-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,.15)}
