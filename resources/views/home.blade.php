@@ -141,7 +141,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 36px;">
         @foreach($services as $service)
           <div style="padding: 24px; border: 1px solid var(--navy-border); border-radius: 20px; background: var(--navy-surface); box-shadow: 0 4px 20px rgba(0,0,0,.25);">
-            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(240,207,99,.15); color: var(--gold2); display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, rgba(245,163,55,.18), rgba(210,47,73,.15)); color: var(--amber-light); border: 1px solid rgba(237,156,57,.25); display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
               @if($service->icon && str_starts_with($service->icon, 'heroicon-'))
                 <x-dynamic-component :component="$service->icon" style="width: 24px; height: 24px;" />
               @else
