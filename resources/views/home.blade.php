@@ -17,10 +17,30 @@
         <a class="btn btn-dark" href="{{ $settings->hero_secondary_button_link ?? '#contact' }}">{{ $settings->hero_secondary_button_text ?? 'Request a Quote' }}</a>
       </div>
       <div class="stats">
-        <div class="stat"><b>01</b><span>One-stop interior solutions</span></div>
-        <div class="stat"><b>02</b><span>Global sourcing model</span></div>
-        <div class="stat"><b>03</b><span>Local installation</span></div>
-        <div class="stat"><b>04</b><span>Project-focused support</span></div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <span class="stat-text">One-stop interior solutions</span>
+        </div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <span class="stat-text">Global sourcing model</span>
+        </div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <span class="stat-text">Local installation</span>
+        </div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <span class="stat-text">Project-focused support</span>
+        </div>
       </div>
     </div>
     <div class="hero-card">

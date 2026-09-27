@@ -314,12 +314,13 @@ section[id]{scroll-margin-top:100px}
 .hero-badge{position:absolute;left:20px;bottom:20px;background:rgba(4,38,65,.94);color:#fff;padding:16px 18px;border-radius:16px;max-width:260px;border:1px solid rgba(255,255,255,.18);border-left:3px solid var(--amber);backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
 .hero-badge strong{display:block;color:var(--amber-light);font-size:13px;margin-bottom:3px}
 
-/* Stats (Hero Stats on White) */
-.hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
-.hero .stat{padding:25px;border:1px solid var(--light-border);border-radius:18px;background:var(--light-surface);box-shadow:var(--light-shadow);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.hero .stat:hover{transform:translateY(-3px);border-color:rgba(237,156,57,.35);box-shadow:var(--light-shadow-hover)}
-.hero .stat b{display:block;font-size:28px;color:var(--light-ink)}
-.hero .stat span{color:var(--light-muted);font-size:13px}
+/* Stats (Hero Feature Cards on White) */
+.hero .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.hero .stat{padding:22px 24px;min-height:86px;border:1.5px solid var(--light-border);border-radius:20px;background:#ffffff;box-shadow:0 8px 24px rgba(4,38,65,.05);display:flex;align-items:center;gap:16px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;position:relative}
+.hero .stat:hover{transform:translateY(-3px);border-color:rgba(237,156,57,.45);box-shadow:0 16px 36px rgba(4,38,65,.10)}
+.hero .stat-icon{width:38px;height:38px;min-width:38px;border-radius:12px;background:rgba(237,156,57,.12);color:var(--coral-dark);display:flex;align-items:center;justify-content:center;transition:background .25s ease,color .25s ease,transform .25s ease}
+.hero .stat:hover .stat-icon{background:var(--logo-gradient-h);color:#042641;transform:scale(1.08)}
+.hero .stat span,.hero .stat-text{color:var(--coral-dark);font-size:16px;font-weight:700;line-height:1.35;letter-spacing:-0.01em}
 
 /* Default / Dark Stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
@@ -665,6 +666,7 @@ textarea{min-height:130px;resize:vertical}
   .hero{padding-top:125px;padding-bottom:75px}
   .hero::after{height:32px}
   .hero-secondary-logo{max-width:340px;max-height:115px}
+  .hero .stat{padding:16px 18px;min-height:auto}
   .section{padding:58px 0}
   .section.alt{padding:75px 0}
   .section.alt::before,.section.alt::after{height:32px}
