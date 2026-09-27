@@ -294,6 +294,10 @@ section[id]{scroll-margin-top:100px}
   z-index:1;
 }
 
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero-logo-wrap{display:block;margin-bottom:24px}
+.hero-secondary-logo{display:block;width:100%;max-width:500px;height:auto;max-height:160px;object-fit:contain;object-position:left center;filter:drop-shadow(0 6px 18px rgba(4,38,65,.08));transition:transform .3s ease}
+.hero-secondary-logo:hover{transform:scale(1.02)}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
 .hero .kicker{color:var(--coral-dark)}
 .hero .kicker:before{background:var(--logo-gradient-h)}
@@ -660,6 +664,7 @@ textarea{min-height:130px;resize:vertical}
   .brand span{font-size:12px;line-height:1.15;max-width:145px}
   .hero{padding-top:125px;padding-bottom:75px}
   .hero::after{height:32px}
+  .hero-secondary-logo{max-width:340px;max-height:115px}
   .section{padding:58px 0}
   .section.alt{padding:75px 0}
   .section.alt::before,.section.alt::after{height:32px}
@@ -681,6 +686,7 @@ textarea{min-height:130px;resize:vertical}
 @media(max-width:380px){
   .brand img{height:32px;width:auto}
   .brand span{display:none}
+  .hero-secondary-logo{max-width:270px;max-height:90px}
   .products{grid-template-columns:1fr}
   .product{min-height:130px}
   .stats{grid-template-columns:1fr}

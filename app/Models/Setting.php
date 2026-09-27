@@ -21,6 +21,7 @@ class Setting extends Model
             'short_name' => 'Adorn',
             'tagline' => 'Design. Source. Deliver.',
             'logo' => 'images/logo.png',
+            'secondary_logo' => 'images/secondary-logo.png',
             'meta_title' => 'Adorn Trading PLC | Design. Source. Deliver.',
             'meta_description' => 'Adorn Trading PLC — Global wholesale furnishing, interior finishing, procurement and project support in Addis Ababa, Ethiopia.',
             'hero_kicker' => 'Global Wholesale Furnishing',

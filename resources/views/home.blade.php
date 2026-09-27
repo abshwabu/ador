@@ -7,12 +7,10 @@
 <section id="home" class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="kicker">{{ $settings->hero_kicker ?? 'Global Wholesale Furnishing' }}</div>
-      <h1>
-        {{ $settings->hero_heading_line1 ?? 'Design.' }}<br>
-        <span>{{ $settings->hero_heading_line2 ?? 'Source.' }}</span><br>
-        {{ $settings->hero_heading_line3 ?? 'Deliver.' }}
-      </h1>
+      <div class="hero-logo-wrap">
+        <h1 class="sr-only">{{ $settings->company_name ?? 'Adorn Trading PLC' }} — {{ $settings->hero_kicker ?? 'Global Wholesale Furnishing' }}</h1>
+        <img class="hero-secondary-logo" src="{{ $resolveImage($settings->secondary_logo ?? 'images/secondary-logo.png', 'images/secondary-logo.png') }}" alt="{{ $settings->company_name ?? 'Adorn Trading PLC' }}">
+      </div>
       <p>{{ $settings->hero_paragraph ?? 'Adorn Trading PLC brings premium interior finishing, furnishing and building-material solutions to Ethiopia through local project expertise and trusted global sourcing partnerships.' }}</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="{{ $settings->hero_primary_button_link ?? '#products' }}">{{ $settings->hero_primary_button_text ?? 'Explore Products' }}</a>

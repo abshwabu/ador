@@ -20,6 +20,7 @@ class SettingSeeder extends Seeder
                 'short_name' => 'Adorn',
                 'tagline' => 'Design. Source. Deliver.',
                 'logo' => 'images/logo.png',
+                'secondary_logo' => 'images/secondary-logo.png',
                 'favicon' => null,
 
                 // SEO

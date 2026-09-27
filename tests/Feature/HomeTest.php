@@ -30,6 +30,8 @@ class HomeTest extends TestCase
         $response->assertSee('Adorn Trading PLC');
         $response->assertSee('Design. Source. Deliver.');
         $response->assertSee('Global Wholesale Furnishing');
+        $response->assertSee('hero-secondary-logo');
+        $response->assertSee('images/secondary-logo.png');
         $response->assertSee('A local partner with a global supply vision.');
         $response->assertSee('How We Work');
         $response->assertSee('Showroom & Design Hub');

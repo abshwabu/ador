@@ -70,7 +70,13 @@ class ManageSettings extends Page
                                         ->label('Tagline')
                                         ->columnSpan(2),
                                     FileUpload::make('logo')
-                                        ->label('Logo')
+                                        ->label('Primary Logo (Navbar & Footer)')
+                                        ->image()
+                                        ->disk('public')
+                                        ->directory('branding'),
+                                    FileUpload::make('secondary_logo')
+                                        ->label('Secondary Logo (Hero)')
+                                        ->helperText('Distinct brand logo lockup displayed in the hero section')
                                         ->image()
                                         ->disk('public')
                                         ->directory('branding'),
