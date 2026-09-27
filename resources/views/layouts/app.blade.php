@@ -78,9 +78,48 @@ img{max-width:100%;display:block}
 
 /* Shared Sections & Typography */
 .kicker{display:inline-flex;gap:10px;align-items:center;color:var(--gold2);font-weight:800;letter-spacing:.18em;font-size:12px;text-transform:uppercase}
-.kicker:before{content:"";width:34px;height:2px;background:var(--gold2)}
-.section{padding:100px 0}
-.section.alt{background:var(--light-bg);color:var(--light-ink);position:relative;border-top:1px solid var(--light-border);border-bottom:1px solid var(--light-border)}
+.section{padding:100px 0;position:relative}
+section[id]{scroll-margin-top:80px}
+.section.alt{
+  background:var(--light-bg);
+  color:var(--light-ink);
+  position:relative;
+  padding:125px 0;
+  overflow:hidden;
+}
+.section.alt .container{
+  position:relative;
+  z-index:2;
+}
+
+/* Elegant Architectural Wave Transitions between Navy and White */
+.section.alt::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:56px;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath fill='rgba(201,162,39,0.22)' d='M0,0 L0,42 C380,72 740,12 1100,48 C1280,64 1390,52 1440,34 L1440,0 Z'/%3E%3Cpath fill='%23042641' d='M0,0 L0,32 C360,64 720,2 1080,36 C1260,52 1380,40 1440,24 L1440,0 Z'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+}
+
+.section.alt::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:56px;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath fill='rgba(201,162,39,0.22)' d='M0,70 L0,20 C360,-8 740,48 1100,14 C1280,-2 1390,20 1440,26 L1440,70 Z'/%3E%3Cpath fill='%23042641' d='M0,70 L0,30 C360,2 720,58 1080,24 C1260,8 1380,32 1440,38 L1440,70 Z'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+}
 .section-head{max-width:760px;margin-bottom:42px}
 .section-head h2{font-family:Georgia,serif;font-size:44px;line-height:1.1;color:#fff;margin:10px 0 14px}
 .section-head p{color:var(--muted);font-size:17px}
@@ -445,7 +484,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--gold2);outline:none;b
 textarea{min-height:130px;resize:vertical}
 
 /* Footer */
-.footer{background:var(--navy-dark);color:var(--muted);padding:55px 0 25px;border-top:1px solid var(--navy-border)}
+.footer{background:var(--navy);color:var(--muted);padding:55px 0 25px}
 .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px}
 .footer h3{color:#fff;margin-top:0}
 .footer-logo{height:96px;width:auto;max-width:240px;object-fit:contain;margin-bottom:14px;background:transparent}
@@ -497,6 +536,8 @@ textarea{min-height:130px;resize:vertical}
   .brand span{font-size:12px;line-height:1.15;max-width:145px}
   .hero{padding-top:125px}
   .section{padding:58px 0}
+  .section.alt{padding:75px 0}
+  .section.alt::before,.section.alt::after{height:32px}
   .page-hero{padding:130px 0 45px}
   .project-hero{padding:120px 0 35px}
   .stats,.products,.process,.team-grid,.portfolio-grid,.meta-grid,.related-grid,.gallery-grid,.project-gallery-grid{grid-template-columns:1fr}
