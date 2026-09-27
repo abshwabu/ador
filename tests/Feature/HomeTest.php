@@ -39,6 +39,13 @@ class HomeTest extends TestCase
         $response->assertSee('info@adorntrading.com');
         $response->assertSee('© 2026 Adorn Trading PLC. All rights reserved.');
 
+        // Cards & Checklists
+        $response->assertSee('One-stop interior solutions');
+        $response->assertSee('Project Management');
+        $response->assertSee('One coordinated project journey.');
+        $response->assertSee('Global Supply Network');
+        $response->assertSee('Ethiopia');
+
         // Rebrand safety: No Miraden references anywhere
         $response->assertDontSee('MIRADEN', false);
         $response->assertDontSee('MIRADEN GLOBAL PLC', false);

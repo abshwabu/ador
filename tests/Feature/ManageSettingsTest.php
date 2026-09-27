@@ -35,6 +35,7 @@ class ManageSettingsTest extends TestCase
         $response->assertSee('Process');
         $response->assertSee('Team');
         $response->assertSee('Quote/CTA');
+        $response->assertSee('Network & Partner');
         $response->assertSee('Contact');
         $response->assertSee('Footer');
         $response->assertSee('SEO');
@@ -52,6 +53,11 @@ class ManageSettingsTest extends TestCase
             ->fillForm([
                 'company_name' => 'Adorn Trading PLC Updated',
                 'tagline' => 'Design. Source. Deliver. Better.',
+                'hero_card_1' => 'Custom Hero Solution Card',
+                'about_check_1_title' => 'Custom Architecture Planning',
+                'about_check_1_text' => 'Custom description for checklist 1',
+                'solutions_partner_title' => 'Custom Partner Card Journey',
+                'network_card_1_title' => 'Addis HQ',
             ])
             ->call('save')
             ->assertHasNoFormErrors();
@@ -60,6 +66,11 @@ class ManageSettingsTest extends TestCase
             'id' => 1,
             'company_name' => 'Adorn Trading PLC Updated',
             'tagline' => 'Design. Source. Deliver. Better.',
+            'hero_card_1' => 'Custom Hero Solution Card',
+            'about_check_1_title' => 'Custom Architecture Planning',
+            'about_check_1_text' => 'Custom description for checklist 1',
+            'solutions_partner_title' => 'Custom Partner Card Journey',
+            'network_card_1_title' => 'Addis HQ',
         ]);
     }
 }

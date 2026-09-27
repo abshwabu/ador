@@ -14,6 +14,7 @@ use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\EmbeddedSchema;
 use Filament\Schemas\Components\Form;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
@@ -123,6 +124,17 @@ class ManageSettings extends Page
                                     TextInput::make('hero_badge_text')
                                         ->label('Badge Subtext')
                                         ->columnSpan(2),
+                                    Section::make('Hero Feature Cards')
+                                        ->description('The 4 feature cards displayed in the hero section')
+                                        ->schema([
+                                            Grid::make(2)->schema([
+                                                TextInput::make('hero_card_1')->label('Feature Card 1'),
+                                                TextInput::make('hero_card_2')->label('Feature Card 2'),
+                                                TextInput::make('hero_card_3')->label('Feature Card 3'),
+                                                TextInput::make('hero_card_4')->label('Feature Card 4'),
+                                            ]),
+                                        ])
+                                        ->columnSpan(3),
                                 ]),
                             ]),
 
@@ -143,6 +155,19 @@ class ManageSettings extends Page
                                         ->image()
                                         ->disk('public')
                                         ->directory('about')
+                                        ->columnSpan(2),
+                                    Section::make('About Section Checklists')
+                                        ->description('Key capabilities checklist items displayed in the About section')
+                                        ->schema([
+                                            Grid::make(2)->schema([
+                                                TextInput::make('about_check_1_title')->label('Checklist 1 Title'),
+                                                TextInput::make('about_check_1_text')->label('Checklist 1 Description'),
+                                                TextInput::make('about_check_2_title')->label('Checklist 2 Title'),
+                                                TextInput::make('about_check_2_text')->label('Checklist 2 Description'),
+                                                TextInput::make('about_check_3_title')->label('Checklist 3 Title'),
+                                                TextInput::make('about_check_3_text')->label('Checklist 3 Description'),
+                                            ]),
+                                        ])
                                         ->columnSpan(2),
                                 ]),
                             ]),
@@ -188,6 +213,39 @@ class ManageSettings extends Page
                                     TextInput::make('quote_button_link')
                                         ->label('Button Link'),
                                 ]),
+                            ]),
+
+                        Tab::make('Network & Partner')
+                            ->icon('heroicon-o-globe-americas')
+                            ->schema([
+                                Section::make('Global Supply Network Cards')
+                                    ->description('Heading and 4 stat cards for the Global Supply Network section')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('network_kicker')->label('Kicker'),
+                                            TextInput::make('network_heading')->label('Heading'),
+                                            Textarea::make('network_intro')->label('Section Introduction')->rows(3)->columnSpan(2),
+                                            TextInput::make('network_card_1_title')->label('Card 1 Title (e.g. Ethiopia)'),
+                                            TextInput::make('network_card_1_text')->label('Card 1 Text'),
+                                            TextInput::make('network_card_2_title')->label('Card 2 Title (e.g. Global)'),
+                                            TextInput::make('network_card_2_text')->label('Card 2 Text'),
+                                            TextInput::make('network_card_3_title')->label('Card 3 Title (e.g. B2B)'),
+                                            TextInput::make('network_card_3_text')->label('Card 3 Text'),
+                                            TextInput::make('network_card_4_title')->label('Card 4 Title (e.g. Turnkey)'),
+                                            TextInput::make('network_card_4_text')->label('Card 4 Text'),
+                                        ]),
+                                    ]),
+
+                                Section::make('Solutions Partner Card')
+                                    ->description('Callout card in the Interior Solutions section')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('solutions_partner_title')->label('Card Title')->columnSpan(2),
+                                            Textarea::make('solutions_partner_text')->label('Card Body Text')->rows(3)->columnSpan(2),
+                                            TextInput::make('solutions_partner_btn_text')->label('Button Label'),
+                                            TextInput::make('solutions_partner_btn_link')->label('Button URL / Anchor'),
+                                        ]),
+                                    ]),
                             ]),
 
                         Tab::make('Contact')

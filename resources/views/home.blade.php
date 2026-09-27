@@ -17,30 +17,38 @@
         <a class="btn btn-dark" href="{{ $settings->hero_secondary_button_link ?? '#contact' }}">{{ $settings->hero_secondary_button_text ?? 'Request a Quote' }}</a>
       </div>
       <div class="stats">
+        @if(!empty($settings->hero_card_1))
         <div class="stat">
           <div class="stat-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <span class="stat-text">One-stop interior solutions</span>
+          <span class="stat-text">{{ $settings->hero_card_1 }}</span>
         </div>
+        @endif
+        @if(!empty($settings->hero_card_2))
         <div class="stat">
           <div class="stat-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <span class="stat-text">Global sourcing model</span>
+          <span class="stat-text">{{ $settings->hero_card_2 }}</span>
         </div>
+        @endif
+        @if(!empty($settings->hero_card_3))
         <div class="stat">
           <div class="stat-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <span class="stat-text">Local installation</span>
+          <span class="stat-text">{{ $settings->hero_card_3 }}</span>
         </div>
+        @endif
+        @if(!empty($settings->hero_card_4))
         <div class="stat">
           <div class="stat-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <span class="stat-text">Project-focused support</span>
+          <span class="stat-text">{{ $settings->hero_card_4 }}</span>
         </div>
+        @endif
       </div>
     </div>
     <div class="hero-card">
@@ -65,7 +73,24 @@
         <p>{{ $settings->about_body ?? 'Adorn Trading PLC is positioned as an Ethiopian interior finishing and design firm based in Addis Ababa, serving residential villas, commercial offices and multi-unit apartments.' }}</p>
       </div>
       <div class="checks">
-        @if($services->isNotEmpty())
+        @php
+          $aboutChecks = [];
+          if (!empty($settings->about_check_1_title)) {
+              $aboutChecks[] = ['title' => $settings->about_check_1_title, 'text' => $settings->about_check_1_text];
+          }
+          if (!empty($settings->about_check_2_title)) {
+              $aboutChecks[] = ['title' => $settings->about_check_2_title, 'text' => $settings->about_check_2_text];
+          }
+          if (!empty($settings->about_check_3_title)) {
+              $aboutChecks[] = ['title' => $settings->about_check_3_title, 'text' => $settings->about_check_3_text];
+          }
+        @endphp
+
+        @if(!empty($aboutChecks))
+          @foreach($aboutChecks as $check)
+            <div class="check"><i>✓</i><div><b>{{ $check['title'] }}</b><br><span>{{ $check['text'] }}</span></div></div>
+          @endforeach
+        @elseif($services->isNotEmpty())
           @foreach($services->take(3) as $service)
             <div class="check"><i>✓</i><div><b>{{ $service->title }}</b><br><span>{{ $service->description }}</span></div></div>
           @endforeach
@@ -176,11 +201,11 @@
     <div class="partner-card" style="margin-top: 36px; margin-bottom: 0;">
       <div class="partner-card-inner">
         <div>
-          <h3 style="margin-top: 0;">One coordinated project journey.</h3>
-          <p style="margin: 0; font-size: 16px; line-height: 1.6;">We support luxury private villas, real-estate developer mock-up apartments, boutique hotels and commercial offices with dedicated architectural consultation, material selection, and end-to-end execution.</p>
+          <h3 style="margin-top: 0;">{{ $settings->solutions_partner_title ?? 'One coordinated project journey.' }}</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6;">{{ $settings->solutions_partner_text ?? 'We support luxury private villas, real-estate developer mock-up apartments, boutique hotels and commercial offices with dedicated architectural consultation, material selection, and end-to-end execution.' }}</p>
         </div>
         <div>
-          <a href="#contact" class="btn btn-gold" style="white-space: nowrap;">Discuss Your Project &rarr;</a>
+          <a href="{{ $settings->solutions_partner_btn_link ?? '#contact' }}" class="btn btn-gold" style="white-space: nowrap;">{{ $settings->solutions_partner_btn_text ?? 'Discuss Your Project →' }}</a>
         </div>
       </div>
     </div>
@@ -287,15 +312,15 @@
 <section class="section alt">
   <div class="container">
     <div class="section-head">
-      <div class="kicker">Global Supply Network</div>
-      <h2>Built around a local-to-global delivery model.</h2>
-      <p>{{ $settings->company_name }} connects Ethiopian builders and developers with direct global manufacturing, securing factory-direct B2B pricing, dedicated account management, material sample kits, and end-to-end supply coordination.</p>
+      <div class="kicker">{{ $settings->network_kicker ?? 'Global Supply Network' }}</div>
+      <h2>{{ $settings->network_heading ?? 'Built around a local-to-global delivery model.' }}</h2>
+      <p>{{ $settings->network_intro ?? ($settings->company_name . ' connects Ethiopian builders and developers with direct global manufacturing, securing factory-direct B2B pricing, dedicated account management, material sample kits, and end-to-end supply coordination.') }}</p>
     </div>
     <div class="stats">
-      <div class="stat"><b>Ethiopia</b><span>Client engagement, site work, customs and installation</span></div>
-      <div class="stat"><b>Global</b><span>Manufacturing, design support and supply coordination</span></div>
-      <div class="stat"><b>B2B</b><span>Wholesale sourcing and project-based procurement</span></div>
-      <div class="stat"><b>Turnkey</b><span>Full-scope delivery from sourcing to installation</span></div>
+      <div class="stat"><b>{{ $settings->network_card_1_title ?? 'Ethiopia' }}</b><span>{{ $settings->network_card_1_text ?? 'Client engagement, site work, customs and installation' }}</span></div>
+      <div class="stat"><b>{{ $settings->network_card_2_title ?? 'Global' }}</b><span>{{ $settings->network_card_2_text ?? 'Manufacturing, design support and supply coordination' }}</span></div>
+      <div class="stat"><b>{{ $settings->network_card_3_title ?? 'B2B' }}</b><span>{{ $settings->network_card_3_text ?? 'Wholesale sourcing and project-based procurement' }}</span></div>
+      <div class="stat"><b>{{ $settings->network_card_4_title ?? 'Turnkey' }}</b><span>{{ $settings->network_card_4_text ?? 'Full-scope delivery from sourcing to installation' }}</span></div>
     </div>
   </div>
 </section>
