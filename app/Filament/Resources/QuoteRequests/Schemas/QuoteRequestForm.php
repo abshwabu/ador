@@ -32,7 +32,8 @@ class QuoteRequestForm
                                 ->required(),
                             TextInput::make('email')
                                 ->label('Email Address')
-                                ->email(),
+                                ->email()
+                                ->required(),
                             TextInput::make('city')
                                 ->label('City / Location')
                                 ->placeholder('e.g. Addis Ababa, Hawassa'),

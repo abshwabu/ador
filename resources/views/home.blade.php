@@ -691,7 +691,7 @@
             <input required type="tel" name="phone" value="{{ old('phone') }}" placeholder="Phone / WhatsApp *" aria-label="Phone number">
           </div>
           <div>
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email address (optional)" aria-label="Email address">
+            <input required type="email" name="email" value="{{ old('email') }}" placeholder="Email address *" aria-label="Email address">
           </div>
         </div>
 

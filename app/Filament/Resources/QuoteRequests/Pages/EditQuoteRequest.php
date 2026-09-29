@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\QuoteRequests\Pages;
 
+use App\Filament\Resources\QuoteRequests\Actions\ReplyToQuoteRequestAction;
 use App\Filament\Resources\QuoteRequests\QuoteRequestResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
@@ -14,6 +15,7 @@ class EditQuoteRequest extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            ReplyToQuoteRequestAction::make(),
             ViewAction::make(),
             DeleteAction::make(),
         ];

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\QuoteRequests\Pages;
 
+use App\Filament\Resources\QuoteRequests\Actions\ReplyToQuoteRequestAction;
 use App\Filament\Resources\QuoteRequests\QuoteRequestResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
@@ -13,6 +14,7 @@ class ViewQuoteRequest extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
+            ReplyToQuoteRequestAction::make(),
             EditAction::make(),
         ];
     }

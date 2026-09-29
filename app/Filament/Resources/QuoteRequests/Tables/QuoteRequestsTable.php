@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\QuoteRequests\Tables;
 
+use App\Filament\Resources\QuoteRequests\Actions\ReplyToQuoteRequestAction;
 use App\Models\QuoteRequest;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
@@ -49,7 +50,7 @@ class QuoteRequestsTable
                     ->label('Email')
                     ->searchable()
                     ->copyable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(),
                 TextColumn::make('project_type')
                     ->label('Project Type')
                     ->badge()
@@ -88,6 +89,7 @@ class QuoteRequestsTable
                     ]),
             ])
             ->recordActions([
+                ReplyToQuoteRequestAction::make(),
                 ViewAction::make()->slideOver(),
                 EditAction::make()->slideOver(),
                 Action::make('mark_contacted')
