@@ -52,7 +52,7 @@ class SettingSeeder extends Seeder
                 'about_image' => 'images/about.jpg',
                 'about_check_1_title' => 'Project Management',
                 'about_check_1_text' => 'Client engagement, site measurements, floor plans and coordination.',
-                'about_check_2_title' => 'Interior Fitting & Installation',
+                'about_check_2_title' => 'Interior Finishing & Installation',
                 'about_check_2_text' => 'Local physical assembly and installation for completed projects.',
                 'about_check_3_title' => 'Global Procurement',
                 'about_check_3_text' => 'Factory sourcing, container consolidation and international supply coordination.',

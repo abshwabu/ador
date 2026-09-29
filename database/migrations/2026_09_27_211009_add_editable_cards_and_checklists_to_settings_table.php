@@ -21,7 +21,7 @@ return new class extends Migration
             // About Section Checklist Items
             $table->string('about_check_1_title')->nullable()->default('Project Management');
             $table->text('about_check_1_text')->nullable();
-            $table->string('about_check_2_title')->nullable()->default('Interior Fitting & Installation');
+            $table->string('about_check_2_title')->nullable()->default('Interior Finishing & Installation');
             $table->text('about_check_2_text')->nullable();
             $table->string('about_check_3_title')->nullable()->default('Global Procurement');
             $table->text('about_check_3_text')->nullable();

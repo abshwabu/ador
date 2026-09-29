@@ -108,7 +108,7 @@ class ContentSeeder extends Seeder
             ],
             [
                 'icon' => 'heroicon-o-wrench-screwdriver',
-                'title' => 'Interior Fitting & Installation',
+                'title' => 'Interior Finishing & Installation',
                 'description' => 'Local physical assembly, craftsmanship and turnkey on-site installation across Ethiopia.',
                 'sort_order' => 2,
                 'is_active' => true,

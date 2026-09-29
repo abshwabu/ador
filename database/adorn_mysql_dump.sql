@@ -233,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `services` (
 -- Dumping data for `services`
 INSERT INTO `services` (`id`, `icon`, `title`, `description`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'heroicon-o-clipboard-document-check', 'Project Management', 'Client engagement, site measurements, architectural layouts and full coordination.', 1, 1, '2026-09-26 05:52:20', '2026-09-26 05:52:20'),
-(2, 'heroicon-o-wrench-screwdriver', 'Interior Fitting & Installation', 'Local physical assembly, craftsmanship and turnkey on-site installation across Ethiopia.', 2, 1, '2026-09-26 05:52:20', '2026-09-26 05:52:20'),
+(2, 'heroicon-o-wrench-screwdriver', 'Interior Finishing & Installation', 'Local physical assembly, craftsmanship and turnkey on-site installation across Ethiopia.', 2, 1, '2026-09-26 05:52:20', '2026-09-26 05:52:20'),
 (3, 'heroicon-o-globe-americas', 'Global Procurement', 'Factory-direct sourcing, container consolidation and international supply chain coordination.', 3, 1, '2026-09-26 05:52:20', '2026-09-26 05:52:20'),
 (4, 'heroicon-o-building-office-2', 'Architectural & Developer Solutions', 'Tailored interior solutions for luxury private villas, real-estate mock-up apartments, boutique hotels and commercial offices.', 4, 1, '2026-09-26 05:52:20', '2026-09-26 05:52:20');
 

@@ -96,7 +96,7 @@
           @endforeach
         @else
           <div class="check"><i>✓</i><div><b>Project Management</b><br><span>Client engagement, site measurements, floor plans and coordination.</span></div></div>
-          <div class="check"><i>✓</i><div><b>Interior Fitting & Installation</b><br><span>Local physical assembly and installation for completed projects.</span></div></div>
+          <div class="check"><i>✓</i><div><b>Interior Finishing & Installation</b><br><span>Local physical assembly and installation for completed projects.</span></div></div>
           <div class="check"><i>✓</i><div><b>Global Procurement</b><br><span>Factory sourcing, container consolidation and international supply coordination.</span></div></div>
         @endif
       </div>
