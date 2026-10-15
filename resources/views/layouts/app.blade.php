@@ -4,8 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#042641">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="description" content="@yield('meta_description', $settings->meta_description ?? 'Adorn Trading PLC — Global wholesale furnishing, interior finishing, procurement and project support in Addis Ababa, Ethiopia.')">
 <title>@yield('title', $settings->meta_title ?? 'Adorn Trading PLC | Design. Source. Deliver.')</title>
+
+<link rel="canonical" href="{{ url()->current() }}">
+
+@if(!empty($settings->google_site_verification))
+<meta name="google-site-verification" content="{{ $settings->google_site_verification }}">
+@endif
 
 <!-- Favicons & Brand Marks -->
 <link rel="icon" type="image/x-icon" href="{{ $settings->favicon ? $resolveImage($settings->favicon) : asset('favicon.ico') }}">
@@ -13,12 +20,68 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
 
 <!-- Social & Open Graph Meta Tags -->
+<meta property="og:site_name" content="{{ $settings->company_name ?? 'Adorn Trading PLC' }}">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="@yield('title', $settings->meta_title ?? 'Adorn Trading PLC | Design. Source. Deliver.')">
 <meta property="og:description" content="@yield('meta_description', $settings->meta_description ?? 'Adorn Trading PLC — Global wholesale furnishing, interior finishing, procurement and project support in Addis Ababa, Ethiopia.')">
-<meta property="og:image" content="{{ asset('images/logo.png') }}">
-<meta property="og:type" content="website">
+<meta property="og:image" content="{{ asset('images/logo.png', true) }}">
+<meta property="og:image:alt" content="{{ $settings->company_name ?? 'Adorn Trading PLC' }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+<meta name="twitter:title" content="@yield('title', $settings->meta_title ?? 'Adorn Trading PLC | Design. Source. Deliver.')">
+<meta name="twitter:description" content="@yield('meta_description', $settings->meta_description ?? 'Adorn Trading PLC — Global wholesale furnishing, interior finishing, procurement and project support in Addis Ababa, Ethiopia.')">
+<meta name="twitter:image" content="{{ asset('images/logo.png', true) }}">
+
+<!-- Schema.org Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => [
+    [
+      '@type' => ['LocalBusiness', 'Organization'],
+      '@id' => url('/') . '/#organization',
+      'name' => $settings->company_name ?? 'Adorn Trading PLC',
+      'alternateName' => [
+        'Adorn Trading',
+        'Adorn Trading PLC Addis Ababa',
+        'Adorn Interior Finishing',
+        'Adorn Ethiopia',
+      ],
+      'url' => url('/'),
+      'logo' => [
+        '@type' => 'ImageObject',
+        'url' => asset('images/logo.png', true),
+      ],
+      'image' => asset('images/hero.jpg', true),
+      'description' => $settings->meta_description ?? 'Adorn Trading PLC brings premium interior finishing, furnishing and building-material solutions to Ethiopia through local project expertise and trusted global sourcing partnerships.',
+      'telephone' => $settings->contact_phone ?? '',
+      'email' => $settings->contact_email ?? 'info@adorntrading.com',
+      'address' => [
+        '@type' => 'PostalAddress',
+        'addressLocality' => 'Addis Ababa',
+        'addressRegion' => 'Addis Ababa',
+        'addressCountry' => 'ET',
+      ],
+      'areaServed' => [
+        '@type' => 'Country',
+        'name' => 'Ethiopia',
+      ],
+      'priceRange' => '$$$',
+    ],
+    [
+      '@type' => 'WebSite',
+      '@id' => url('/') . '/#website',
+      'url' => url('/'),
+      'name' => $settings->company_name ?? 'Adorn Trading PLC',
+      'description' => $settings->tagline ?? 'Design. Source. Deliver.',
+      'publisher' => [
+        '@id' => url('/') . '/#organization',
+      ],
+    ],
+  ],
+], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
+</script>
 
 <!-- Typography: Montserrat Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
